@@ -1,0 +1,52 @@
+<html lang="en">
+
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<title>{% block title %}{% endblock  %}</title>
+{% include "topScript.html" %}
+</head>
+<body class="home-page bg-one">
+
+<!-- Wrapper -->
+<div class="main-wrapper">
+
+<!-- Header Container
+================================================== -->
+{% include "header.html" %}
+
+<!-- Header Container / End -->
+
+
+
+<!-- Intro Banner
+================================================== -->
+<!-- add class "disable-gradient" to enable consistent background overlay -->
+<section class="section home-banner row-middle">
+	<div class="container-fluid w-100">
+		{% block container %}
+        {% endblock  %}
+	</div>
+</section>
+
+
+
+
+
+
+
+{% include "footer.html" %}
+</div>
+<!-- Wrapper / End -->
+
+
+{% include "bottomScripts.html" %}
+
+{% block end %}
+
+{% endblock  %}
+</body>
+
+<!-- Mirrored from www.vasterad.com/themes/hireo_21/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2025 06:33:14 GMT -->
+</html>

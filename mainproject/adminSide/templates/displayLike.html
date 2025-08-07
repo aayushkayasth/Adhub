@@ -1,0 +1,21 @@
+{% extends "adminBase.html" %}
+{% block container %}
+    <table border="1" class="table table-hover">
+        <tr class="bg-primary">
+            <th>Like ID</th>
+            <th>Project ID</th>
+            <th>Date</th>
+            <th>User ID</th>
+        </tr>
+
+        
+            {% for l in lik %}
+            <tr>
+                <td>{{l.likeId}}</td>
+                <td>{{l.projectid.bname}}</td>
+                <td>{{l.date}}</td>
+                <td>{{l.advertiserid.advertisername}}</td>
+            </tr>
+            {% endfor %}
+    </table>
+{% endblock %}

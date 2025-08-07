@@ -1,0 +1,27 @@
+{% extends "adminBase.html" %}
+{% block container %}
+<div class="container">
+    <form method="post" class="w-75 border p-4 mb-4 border-primary">{% csrf_token %}
+        <div class="mb-3">
+            <label for="" class="text-dark">Enter City id:</label>
+            <input type="text" name="txtcid" class="form-control" value="{{cityData.cityid}}">
+        </div>
+        <div class="mb-3">
+            <label for="" class="text-dark">Enter City Name:</label>
+            <input type="text" name="categoryname" value="{{cityData.categoryname}}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="" class="text-dark">Choose state Name:</label>
+            <select name="state" class="form-control">
+                {% comment %} <option value="disabled">--select state name--</option> {% endcomment %}
+                {% for s in state %}
+                    <option value="{{s.stateid}}" {% if cityData.stateid.stateid == s.stateid %}selected{% endif %}>{{s.statename}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <input type="submit" class="btn btn-primary w-25" name="btnupd" value="Update">
+        </div>
+    </form>
+</div>
+{% endblock  %}

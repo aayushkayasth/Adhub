@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% block container %}
+
+<!-- Page Content -->
+<div class="content">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="select-project mb-4">
+					<form method="post" enctype="multipart/form-data"> {% csrf_token %}
+						{% if error_message %}
+								<div class="alert alert-danger">{{ error_message }}</div>
+						{% endif %}
+						<div class="title-box widget-box">
+							<div class="row">
+								<div class="col-lg-12">
+									<h4>Basic Details</h4>
+								</div>
+								<div class="col-lg-6 col-md-12">
+									<div class="mb-3">
+										<label class="focus-label">Project Name</label>
+										<input type="text" class="form-control" title="enter a valid project name"
+											name="txtbname" required />
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-12">
+									<div class="mb-3">
+										<label class="focus-label">Project Title</label>
+										<input type="text" class="form-control" name="txttitle"
+											 title="enter a valid project name"
+											required />
+									</div>
+								</div>
+
+								<div class="col-lg-4 col-md-12">
+									<div class="mb-3">
+										<label class="focus-label">Project Category</label>
+										<select class="form-control select" name="txtcategory" onchange="loadSubcats(this.value)">
+											<option>Select Category</option>
+											{% for c in category %}
+											<option value="{{c.categoryid}}">{{c.categoryname}}</option>
+											{% endfor %}
+										</select>
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-12">
+									<div class="mb-3">
+										<label class="focus-label">Project Subcategory</label>
+										<select class="form-control select" name="txtsubcategory" id="sid">
+											<option value="-1">Select Subcategory</option>
+											
+										</select>
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-6 ">
+									<div class="mb-3">
+										<label class="focus-label">Budget</label>
+										<div class="">
+											<input type="text" class="form-control" name="txtbudget" required />
+										</div>
+									</div>
+								</div>
+
+
+								<div class="col-lg-4 col-md-12">
+									<div class="mb-3">
+										<label class="focus-label">Proposal StartDate</label>
+										<input type="date" min="{{ today }}" max="{{ today|add:'365' }}" class="form-control datetimepicker" id="bidDate" name="bidstart" placeholder="Choose" required />
+										<h6 id="dateV"></h6>
+									</div>
+								</div>
+								
+								<div class="col-lg-4 col-md-12">
+									<div class="mb-3">
+										<label class="focus-label">Proposal EndDate</label>
+										<input type="date" min="{{ today }}" max="{{ today|add:'365' }}" class="form-control datetimepicker" name="bidend"	placeholder="Choose" required />
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-6 ">
+									<div class="mb-3">
+										<label class="focus-label">City</label>
+										<div class="">
+											<select name="txtCity" class="form-control">
+												{% for c in cities %}
+												<option value={{c.cityid}}>{{c.cityname}}</option>
+												{% endfor %}
+											</select>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="col-lg-12">
+									<div class="mb-3">
+										<label class="focus-label">Write Description of Projects</label>
+										<textarea class="form-control" name="txtdes" required></textarea>
+									</div>
+								</div>
+
+								<div class="col-lg-12 my-3">
+									<h4>Attachment</h4>
+									<p>You can attach your File, Size of the Document should be Below 2MB </p>
+								</div>
+								<div class="col-lg-12">
+									<div class="attach-file">
+										<i class="fa fa-pdf"></i>
+										Attach file
+										<input type="file" name="fup" placeholder="choose image">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12 text-end">
+										<div class="btn-item">
+											<input type="submit" name="btnadd" class="btn next-btn" value="post">
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>	
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+<!-- /Page Content -->
+
+{% endblock %}
+
+{% block end %}
+<script>
+	function loadSubcats(cid)
+	{
+		$.ajax({
+			url:"{% url 'subcats' %}?cid="+cid,
+			success:function(res){
+				console.log(res);
+				$("#sid").html(res);
+			}
+		});
+	}
+</script>
+{% endblock  %}

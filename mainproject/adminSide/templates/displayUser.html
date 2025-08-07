@@ -1,0 +1,35 @@
+{% extends "adminBase.html" %}
+{% block container %}
+    <table border="1" class="table table-hover">
+        <tr class="bg-primary">
+            <th>User ID</th>
+            <th>Name</th>
+            <th>UserName</th>
+            <th>Password</th>
+            <th>Email ID</th>
+            <th>Gender</th>
+            <th>City ID</th>
+            <th>Contact</th>
+            <th>ProfilePic</th>
+            <th>CreatedDt</th>
+            
+        </tr>
+        {% for u in us %}
+        <tr>
+            <td>{{u.userid}}</td>
+            <td>{{u.name}}</td>
+            <td>{{u.username}}</td>
+            <td>{{u.password}}</td>
+            <td>{{u.emailid}}</td>
+            <td>{{u.gender}}</td>
+            <td>{{u.cityid.cityname}}</td>
+            <td>{{u.contact}}</td>
+            <td>
+                <img src="{{u.profilepic.url}}" height="70px" width="70px" class="object-fit-cover">
+            </td>
+            <td>{{u.createdDt}}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock  %}

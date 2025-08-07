@@ -1,0 +1,29 @@
+{% extends "adminBase.html" %}
+{% block container %}
+    <table border="1" class="table table-hover">
+        <tr class="bg-primary">
+            <th>Project Proposal ID</th>
+            <th>Project ID</th>
+            <th>Proposal Amount</th>
+            <th>User ID</th>
+            <th>Advertiser ID</th>
+            <th>Proposal Date</th>
+            <th>Description</th>
+            <th>Status</th>
+        </tr>
+
+        
+            {% for b in probid %}
+            <tr>
+                <td>{{b.projectbidid}}</td>
+                <td>{{b.projectid.bname}}</td>
+                <td>{{b.bidamount}}</td>
+                <td>{{b.userid.username}}</td>
+                <td>{{b.advertiserid.advertisername}}</td>
+                <td>{{b.biddate}}</td>
+                <td>{{b.description}}</td>
+                <td>{{b.status}}</td>
+            </tr>
+            {% endfor %}
+    </table>
+{% endblock %}

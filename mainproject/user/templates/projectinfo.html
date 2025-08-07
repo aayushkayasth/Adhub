@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block container %}
+<div class="row">
+    <!-- Project Content -->
+    {% for p in projects %}
+    <div class="col-xl-3 col-md-6">
+        <div class="freelance-widget widget-author position-relative">
+            <div class="freelance-content">
+                <div class="freelance-location freelance-time">
+                    <i class="feather-clock me-1"></i> {{p.createddate}}
+                </div>
+                {% comment %} <a data-bs-toggle="modal" href="{% url "likeproject" %}" class="favourite"><i
+                        class="feather-heart"></i></a> {% endcomment %}
+                <div class="author-heading ">
+                    <div class=" freelance-img">
+                        <a href="javascript:void(0);">
+                            <img src="{{p.image.url}}" alt="author">
+                            <span class="verified"><i class="fas fa-check-circle"></i></span>
+                        </a>
+                    </div>
+
+                    <div class="profile-name">
+                        <div class="author-location">{{p.bname}}</div>
+                    </div>
+                    <div class="freelance-info">
+                        <!-- <h3><a href="javascript:void(0);">{{p.title}}</a></h3> -->
+                        <div class="freelance-info">
+                            <h3><a href="javascript:void(0);">{{p.categoryid}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="javascript:void(0);">{{p.subcategoryid}}</a>
+                            </h3>
+                            {% comment %} <div class="freelance-location"><img src="{% static "
+                                    img/icon/locations.svg" %}" class="me-2" alt="img"></div> 
+                                    {% endcomment %}
+                        </div>
+
+                        <div class="freelancers-price">&#8377;{{p.budget}}</div>
+                    </div>
+                    <div class="counter-stats">
+                        <ul>
+                            <li>
+                                <h5>Bid Start</h5>
+                                <h3 class="counter-value">{{p.bidstartdate|date:'y-m-d'}}</h3>
+                            </li>
+                            <li>
+                                <h5>Proposals</h5>
+                                <h3 class="counter-value">{{p.bids}}</h3>
+                            </li>
+                            <li>
+                                <h5>Bid End</h5>
+                                <h3 class="counter-value">{{p.bidenddate|date:'y-m-d'}}</h3>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="cart-hover">
+                    <a href="{% url 'details' %}?pid={{p.projectid}}" class="btn-cart"
+                        tabindex="-1">View Project</a>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock  %}

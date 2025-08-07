@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	
+<!-- Mirrored from kofejob.dreamstechnologies.com/html/template/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Mar 2025 06:53:16 GMT -->
+	<head>
+		<title>{% block title %}{% endblock %}</title>
+	{% include "topScript.html" %}
+	</head>		
+	<body class="account-page">
+		
+		<!-- Main Wrapper -->
+		<div class="main-wrapper">
+					
+			<!-- Start Navigation -->
+			
+			<!-- Page Content -->
+			<div class="login-wrapper">
+				
+				<div class="content">
+					<!-- Login Content -->
+					<div class="account-content">
+						<div class="align-items-center justify-content-center">
+							<div class="login-right">
+								{{error}}
+								<div class="login-header text-center">
+									<h3>Forgot Password</h3>
+									
+								</div>
+								<form method="post">{% csrf_token %}
+									<div class="input-block">
+										<label class="focus-label">Email ID<span class="label-star"> *</span></label>
+										<input type="email" class="form-control floating" name="txtemaill">
+									</div>
+									<div class="input-block">
+										<label class="focus-label">Add New password<span class="label-star"> *</span></label>
+										<input type="text" class="form-control floating" name="txtpwd">
+									</div>
+									</div>										
+									<input class="btn btn-primary w-100 btn-lg login-btn d-flex align-items-center justify-content-center" type="submit" name="btnfor">Forget Passwrod<i class="feather-arrow-right ms-2"></i>
+									
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- /Login Content -->
+				</div>			
+			</div>
+
+			<!-- /Page Content -->
+   
+	
+			{% include "bottomScripts.html" %}
+			
+		</div>
+		<!-- /Main Wrapper -->
+	  
+		
+</body>
+
+<!-- Mirrored from kofejob.dreamstechnologies.com/html/template/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Mar 2025 06:53:18 GMT -->
+</html>

@@ -1,0 +1,46 @@
+{% extends "adminBase.html" %}
+{% block container %}
+       
+            <table border="1" class="table-bordered table-hover" style="max-width:2000px">
+                <tr class="bg-primary m-3">
+                    <th>Project ID</th>
+                    <th>Project Name</th>
+                    <th>Title</th>
+                    <th>Budget</th>
+                    <th>Category ID</th>
+                    <th>Subcategory ID</th>
+                    <th>Created Date</th>
+                    <th>User ID</th>
+                    <th>City ID</th>
+                    <th>Advertiser ID</th>
+                    <th>Bid Start Date</th>
+                    <th>Bid End Date</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    
+                </tr>
+                {% for p in pro %}
+                <tr>
+                    <td>{{p.projectid}}</td>
+                    <td>{{p.bname}}</td>
+                    <td>{{p.title}}</td>
+                    <td>{{p.budget}}</td>
+                    <td>{{p.categoryid.categoryname}}</td>
+                    <td>{{p.subcategoryid.subcategoryname}}</td>
+                    <td>{{p.createddate}}</td>
+                    <td>{{p.userid.username}}</td>
+                    <td>{{p.cityid.cityname}}</td>
+                    <td>{{p.advertiserid.advertisername}}</td>
+                    <td>{{p.bidstartdate}}</td>
+                    <td>{{p.bidenddate}}</td>
+                    <td>{{p.description}}</td>
+                    <td>
+                        <img src="{{p.image.url}}" height="70px" width="70px" class="object-fit-cover">
+                    </td>
+                    
+                </tr>
+                {% endfor %}
+            </table>
+        
+       
+{% endblock  %}

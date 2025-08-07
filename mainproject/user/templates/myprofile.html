@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block container %}
+  {% load static %}
+
+  <section class="my-account">
+    <div class="profile-bg position-relative">
+      <img src="{% static 'img/advertising-agency-blog.png' %}" alt="abc" style="width:100%;height:500px;" />
+      <div class="my-Profile-dt mb-5 pb-5">
+        <div class="container position-absolute" style="top:450px; ">
+          <div class="row">
+            <div class="col-md-1">
+              <div class="profile-dpt">
+                <img src="{{ user.profilepic.url }}" alt="{{ user.profilepic.url }}" style="width:155px;height:155px;border:5px solid rgba(255,255,255,0.5)" class="fup" />
+              </div>
+            </div>
+            <div class="col-md-3" style="padding-left:80px">
+              <div class="profile-all-dt">
+                <h1>{{ user.username }}</h1><br />
+                <a href="#"><h2><span class="ms-1"><i class="fa-solid feather-map-pin"></i>&nbsp;&nbsp;{{ user.cityid.cityname }}</span></h2></a>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="all-profile-details">
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-md-12">
+          <div class="tab-content-heading">
+            <h4 class="text-center">My Projects</h4>
+          </div>
+          <div class="about-dtp">
+            <div class="recently-resto-bg">
+              <div class="container">
+                <div class="row">
+                  {% for p in project %}
+                    <div class="col-xl-3 col-md-6">
+                      <div class="freelance-widget widget-author position-relative">
+                        <div class="freelance-content">
+                          <div class="freelance-location freelance-time">
+                            <i class="feather-clock me-1"></i>{{ p.createddate }}
+                          </div>
+                          <a data-bs-toggle="modal" href="#rating" class="favourite"><i class="feather-heart"></i></a>
+                          <div class="author-heading">
+                            <div class="freelance-img">
+                              <a href="javascript:void(0);">
+                                <img src="{{ p.image.url }}" alt="author" />
+                                <span class="verified"><i class="fas fa-check-circle"></i></span>
+                              </a>
+                            </div>
+
+                            <div class="profile-name">
+                              <div class="author-location">{{ p.bname }}</div>
+                            </div>
+                            <div class="freelance-info">
+                              <!-- <h3><a href="javascript:void(0);">{{p.title}}</a></h3> -->
+                              <div class="freelance-info">
+                                <h3>
+                                  <a href="javascript:void(0);">{{ p.categoryid }}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  <a href="javascript:void(0);">{{ p.subcategoryid }}</a>
+                                </h3>
+                                {% comment %} <div class="freelance-location">
+                                  <img src="{% static 'img/icon/locations.svg' %}" class="me-2" alt="img" />
+                                </div>
+                                {% endcomment %}
+                              </div>
+
+                              <div class="freelancers-price">&#8377;{{ p.budget }}</div>
+                            </div>
+                            <div class="counter-stats">
+                              <ul>
+                                <li>
+                                  <h5>Bid Start</h5>
+                                  <h3 class="counter-value">{{ p.bidstartdate|date:'y-m-d' }}</h3>
+                                </li>
+                                <li>
+                                  <h5>Proposals</h5>
+                                  <h3 class="counter-value">{{ p.bids }}</h3>
+                                </li>
+                                <li>
+                                  <h5>Bid End</h5>
+                                  <h3 class="counter-value">{{ p.bidenddate|date:'y-m-d' }}</h3>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="cart-hover">
+                            <a href="{% url 'details' %}?pid={{ p.projectid }}" class="btn-cart" tabindex="-1">View Project</a>
+                          </div>
+                          {% if p.userid.userid == request.session.uid %}
+                          <div class="cart-hover p-3 mb-3">
+                            <a href="{% url 'delpro' %}?pid={{ p.projectid }}" class="btn-cart" tabindex="-1">Delete Project</a>
+                          </div>
+                          {% endif %}
+                          
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

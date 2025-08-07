@@ -1,0 +1,36 @@
+from django.urls import path 
+from .import views
+
+urlpatterns = [
+    path("home",views.home,name="home"),
+    path("register",views.register,name="register"),
+    path("login",views.login,name="login"),
+    path("logout",views.logout,name="logout"),
+    path("postproject",views.postproject,name="postproject"),
+    path("displayproject",views.displayproject,name="display"),
+    path("projectdetails",views.projectdetails,name="details"),
+    path("editprofile",views.editprofile,name="editprofile"),
+    path("delBid",views.delBid,name="delBid"),
+    path("editprofile2",views.editprofile2,name="editprofile2"),
+    path("myprojects",views.myprojects,name="myprojects"),
+    path("likeProject",views.likeProject,name="likeProject"),
+    path("unlikeProject",views.unlikeProject,name="unlikeProject"),
+    path("myprofile",views.myprofile,name="myprofile"),
+    path("myprofile2",views.myprofile2,name="myprofile2"),
+    path("adv",views.adv,name="adv"),
+    path("adv2",views.adv2,name="adv2"),
+    path("mybids",views.mybids,name="mybids"),
+    path("LikeData",views.projectLike,name="LikeData"),
+    path('delpro',views.delpro,name="delpro"),
+    path('about',views.about,name="about"),
+    path('forgetpass',views.forgetpass,name="forgetpass"),
+    # path("devloper",views.devloper,name="devloper"),
+    path("projectinfo",views.projectinfo,name="projectinfo"),
+    path("",views.home,name="home"),
+    path("create_order", views.create_order, name="create_order"),
+    path("verify_payment", views.verify_payment, name="verify_payment"),
+    path("success", views.success, name="success"),
+    path('subcats',views.loadsubcat,name="subcats"),
+    path('subcats2',views.loadsubcats2,name="subcats2"),
+    path('subcats3',views.loadsubcats3,name="subcats3")
+]

@@ -1,0 +1,380 @@
+{% extends "base.html" %}
+{% load static %}
+{% block container %}
+
+<!-- Page Content
+================================================== -->
+
+<!-- Mirrored from kofejob.dreamstechnologies.com/html/template/project.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Mar 2025 06:53:00 GMT -->
+
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	{% comment %} {% include "topScript.html" %} {% endcomment %}
+</head>
+
+<body>
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<!-- Start Navigation -->
+		<div class="bread-crumb-bar">
+			<div class="container">
+				<div class="row align-items-center inner-banner">
+					<div class="col-md-12 col-12 text-center">
+						<div class="breadcrumb-list">
+							<h3>Project Grid</h3>
+							<nav aria-label="breadcrumb" class="page-breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="{% url 'home'%}"> Home</a></li>
+									<li class="breadcrumb-item" aria-current="page">Projects</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Page Content -->
+		<div class="content">
+			<div class="container">
+				<div class="row">
+					
+
+					
+						
+						{% if request.session.type == "A"%}
+						
+						<div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
+						<!-- Search Filter -->
+						<form method="post">{% csrf_token %}
+						<div class="card search-filter">
+							<div class="card-header d-flex justify-content-between">
+								<h4 class="card-title mb-0">Search Filter</h4>
+							</div>
+							<div class="card-body">
+								
+								<div class="filter-widget">
+									{% comment %} <h4 class="filter-title">
+										<a href="javascript:void(0);" class="w-100" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+											Category	
+											<span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+										</a> 
+									</h4> {% endcomment %}
+									<div id="collapseOne" class="collapse show" data-bs-parent="#accordionExample1" >
+										<h3>Category</h3>
+										{% for c in category %}
+										<div>
+											{% comment %} <label class="custom_check"> {% endcomment %}
+												<input type="radio" name="category" onchange="loadSubcats2(this.value)" value="{{c.categoryid}}">&nbsp;&nbsp;&nbsp;{{c.categoryname}}
+											{% comment %} </label> {% endcomment %}
+										</div>
+										{% endfor %}
+										<div id="subcatDiv">
+											
+										</div>
+									</div>
+								</div>
+								
+								 <div class="filter-widget">
+									{% comment %} <h4 class="filter-title">
+										<a href="javascript:void(0);" class="w-100" data-bs-toggle="collapse" data-bs-target="#collapselocation" aria-expanded="true" aria-controls="collapseOne">
+											State	
+											<span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+										</a> 
+									</h4> {% endcomment %}
+									<div id="collapseTwo" class="collapse show" data-bs-parent="#accordionExample1" >
+										<h3>State</h3>
+										{% for s in state %}
+										<div>
+												<input type="radio" name="state" onchange="loadSubcat3(this.value)" value="{{s.stateid}}">&nbsp;&nbsp;&nbsp;{{s.statename}}
+										</div>
+										{% endfor %}
+										<div id="subcatDiv1">
+											
+										</div>
+									</div>
+									<div id="collapseTwo" class="collapse show" data-bs-parent="#accordionExample1">
+										<h3>Price</h3>
+										<div>
+											<input type="text" name="txtmin" placeholder="Min Price"><br>
+											<input type="text" name="txtmax" placeholder="Max Price"><br>
+										</div>
+									</div>
+								</div>
+							
+								<div class="btn-search">
+									<input type="submit" class="btn btn-primary" value="Search" name="btnser">
+									{% comment %} <input type="submit" class="btn btn-primary" value="Reset" name="btnres"> {% endcomment %}
+								</div>	
+							</div>
+						
+						</div>
+						<!-- /Search Filter -->
+						</div>
+						<div class="col-md-12 col-lg-8 col-xl-9">
+							<div class="sort-tab develop-list-select">
+								<div class="row align-items-center">
+									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+										<div class="d-flex align-items-center">
+										   <div class="freelance-view">
+											{% comment %} <h4>Found {{total}} Results</h4> {% endcomment %}
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-sm-end">
+									<div class="sort-by">
+										{% comment %} <form method="post">{% csrf_token %}
+										<select class="p-2 bg-light text-black" name="category" >
+											{% for s in category %}
+											<option value="{{s.categoryid}}">{{s.categoryname}}</option>
+											{% endfor %}
+										</select>
+
+										<input type="submit" class=" data-mdb-color-picker-init." name="btnsearch" value="search">
+										</form> {% endcomment %}
+									</div>
+								</div>
+							</div>
+						</div>
+
+						
+
+						<div class="row">
+							<!-- Project Content -->
+							{% if projects|length == 0 %}
+								<h1>Your choice is invalid..!!</h1>
+							{% endif %}
+
+							{% for p in projects %}
+							<div class="col-xl-4 col-md-6">
+								<div class="freelance-widget widget-author position-relative">
+									<div class="freelance-content">
+										<div class="freelance-location freelance-time">
+											<i class="feather-clock me-1"></i> {{p.createddate}}
+										</div>
+										{% comment %} <a data-bs-toggle="modal" href="{% url "likeproject" %}" class="favourite"><i
+												class="feather-heart"></i></a> {% endcomment %}
+										<div class="author-heading ">
+											<div class=" freelance-img">
+												<a href="javascript:void(0);">
+													<img src="{{p.image.url}}" alt="author">
+													<span class="verified"><i class="fas fa-check-circle"></i></span>
+												</a>
+											</div>
+
+											<div class="profile-name">
+												<div class="author-location">{{p.bname}}</div>
+											</div>
+											<div class="freelance-info">
+												<!-- <h3><a href="javascript:void(0);">{{p.title}}</a></h3> -->
+												<div class="freelance-info">
+													<h3><a href="javascript:void(0);">{{p.categoryid}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														<a href="javascript:void(0);">{{p.subcategoryid}}</a>
+													</h3>
+													{% comment %} <div class="freelance-location"><img src="{% static "
+															img/icon/locations.svg" %}" class="me-2" alt="img"></div> 
+															{% endcomment %}
+												</div>
+
+												<div class="freelancers-price">&#8377;{{p.budget}}</div>
+											</div>
+											<div class="counter-stats">
+												<ul>
+													<li>
+														<h5>Proposal Start</h5>
+														<h3 class="counter-value">{{p.bidstartdate|date:'y-m-d'}}</h3>
+													</li>
+													<li>
+														<h5>Proposals</h5>
+														<h3 class="counter-value">{{p.bids}}</h3>
+													</li>
+													<li>
+														<h5>Proposal End</h5>
+														<h3 class="counter-value">{{p.bidenddate|date:'y-m-d'}}</h3>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div class="cart-hover">
+											<a href="{% url 'details' %}?pid={{p.projectid}}" class="btn-cart"
+												tabindex="-1">View Project</a>
+										</div>
+									</div>
+
+									
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</form>
+					
+						{% else %}
+						<div class="col-md-12 col-lg-12 col-xl-12">
+							<div class="sort-tab develop-list-select">
+								<div class="row align-items-center">
+									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+										<div class="d-flex align-items-center">
+										   <div class="freelance-view">
+											{% comment %} <h4>Found {{total}} Results</h4> {% endcomment %}
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-sm-end">
+									<div class="sort-by">
+										{% comment %} <form method="post">{% csrf_token %}
+										<select class="p-2 bg-light text-black" name="category" >
+											{% for s in category %}
+											<option value="{{s.categoryid}}">{{s.categoryname}}</option>
+											{% endfor %}
+										</select>
+
+										<input type="submit" class=" data-mdb-color-picker-init." name="btnsearch" value="search">
+										</form> {% endcomment %}
+									</div>
+								</div>
+							</div>
+						</div>
+
+						
+
+						<div class="row">
+							<!-- Project Content -->
+							{% if projects|length == 0 %}
+								<h1>You Have Uploaded No Project..!!</h1>
+							{% endif %}
+
+							{% for p in projects %}
+							<div class="col-xl-3 col-md-6">
+								<div class="freelance-widget widget-author position-relative">
+									<div class="freelance-content">
+										<div class="freelance-location freelance-time">
+											<i class="feather-clock me-1"></i> {{p.createddate}}
+										</div>
+										{% comment %} <a data-bs-toggle="modal" href="{% url "likeproject" %}" class="favourite"><i
+												class="feather-heart"></i></a> {% endcomment %}
+										<div class="author-heading ">
+											<div class=" freelance-img">
+												<a href="javascript:void(0);">
+													<img src="{{p.image.url}}" alt="author">
+													<span class="verified"><i class="fas fa-check-circle"></i></span>
+												</a>
+											</div>
+
+											<div class="profile-name">
+												<div class="author-location">{{p.bname}}</div>
+											</div>
+											<div class="freelance-info">
+												<!-- <h3><a href="javascript:void(0);">{{p.title}}</a></h3> -->
+												<div class="freelance-info">
+													<h3><a href="javascript:void(0);">{{p.categoryid}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														<a href="javascript:void(0);">{{p.subcategoryid}}</a>
+													</h3>
+													{% comment %} <div class="freelance-location"><img src="{% static "
+															img/icon/locations.svg" %}" class="me-2" alt="img"></div> 
+															{% endcomment %}
+												</div>
+
+												<div class="freelancers-price">&#8377;{{p.budget}}</div>
+											</div>
+											<div class="counter-stats">
+												<ul>
+													<li>
+														<h5>Proposal Start</h5>
+														<h3 class="counter-value">{{p.bidstartdate|date:'y-m-d'}}</h3>
+													</li>
+													<li>
+														<h5>Proposals</h5>
+														<h3 class="counter-value">{{p.bids}}</h3>
+													</li>
+													<li>
+														<h5>Proposal End</h5>
+														<h3 class="counter-value">{{p.bidenddate|date:'y-m-d'}}</h3>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div class="cart-hover">
+											<a href="{% url 'details' %}?pid={{p.projectid}}" class="btn-cart"
+												tabindex="-1">View Project</a>
+										</div>
+									</div>
+
+									
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+						{% endif %}
+					
+					
+						
+					</div>
+					{% comment %} {% include "bottomScripts.html" %} {% endcomment %}
+				</div>
+
+
+				<!-- /Page Content -->
+
+
+			</div>
+			<!-- /Main Wrapper -->
+
+
+			<!-- The Modal -->
+			{% comment %} <div class="modal fade" id="rating">
+				<div class="modal-dialog modal-dialog-centered modal-md">
+					<div class="modal-content">
+						<div class="modal-header d-block b-0 pb-0">
+							<span class="modal-close float-end"><a href="javascript:void(0);" data-bs-dismiss="modal"
+									aria-label="Close"><i class="fa fa-times orange-text"></i></a></span>
+						</div>
+						<div class="modal-body">
+							<form action="https://kofejob.dreamstechnologies.com/html/template/project.html">
+								<div class="modal-info">
+									<div class="text-center pt-0 mb-5">
+										<h3>Please login to Favourite Project</h3>
+									</div>
+									<div class="submit-section text-center">
+										<a data-bs-dismiss="modal" href="javascript:void(0);"
+											class="btn btn-primary black-btn click-btn">Cancel</a>
+										<button type="submit" class="btn btn-primary click-btn">Submit</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				{% include "bottomScripts.html" %}
+			</div> {% endcomment %}
+			<!-- /The Modal -->
+		</div>
+		</body>
+
+{% endblock %}
+
+{% block end %}
+<script>
+	function loadSubcats2(cid)
+	{
+		$.ajax({
+			url:"{% url 'subcats2' %}?cid="+cid,
+			success:function(res){
+				console.log(res);
+				$("#subcatDiv").html(res);
+			}
+		});
+	}
+
+	function loadSubcat3(sid)
+	{
+		$.ajax({
+			url:"{% url 'subcats3' %}?sid="+sid,
+			success:function(res){
+				console.log(res);
+				$("#subcatDiv1").html(res);
+			}
+		});
+	}
+</script>
+{% endblock  %}

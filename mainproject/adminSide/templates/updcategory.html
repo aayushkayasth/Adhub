@@ -1,0 +1,18 @@
+{% extends "adminBase.html" %}
+{% block container %}
+<div class="container">
+    <form method="post" class="w-75 border p-4 mb-4 border-primary">{% csrf_token %}
+        <div class="mb-3">
+            <label for="" class="text-dark">Enter Category ID</label>
+            <input type="text" name="catid" value="{{catData.categoryid}}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="" class="text-dark">Enter Category Name:</label>
+            <input type="text" name="catname" value="{{catData.categoryname}}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <input type="submit" class="btn btn-primary w-25" name="btnupd" value="Update">
+        </div>
+    </form>
+</div>
+{% endblock  %}

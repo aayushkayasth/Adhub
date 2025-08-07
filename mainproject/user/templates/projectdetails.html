@@ -1,0 +1,401 @@
+{% extends "base.html" %}
+{% load static %}   
+{% block container %}
+
+<!-- Page Content
+================================================== -->
+
+<!-- Mirrored from kofejob.dreamstechnologies.com/html/template/project.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Mar 2025 06:53:00 GMT -->
+
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	{% comment %} {% include "topScript.html" %} {% endcomment %}
+</head>
+<body>
+    
+<!-- Breadcrumb -->
+<div class="bread-crumb-bar">
+    <div class="container">
+        <div class="row align-items-center inner-banner">
+            <div class="col-md-12 col-12 text-center">
+                <div class="breadcrumb-list">
+                    <h2>Project Details</h2>
+                    <nav aria-label="breadcrumb" class="page-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'home'%}"> Home</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'display'%}">Project</a></li>
+                            <li class="breadcrumb-item" aria-current="page">Project Details</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+
+<div class="content">
+    <div class="container">
+       
+        <div class="row">
+            
+            <div class="col-lg-8 col-md-12">
+                <div class="company-detail-block pt-0">
+                    <div class="company-detail">
+                        <div class="company-detail-image">
+                            <img src="{{projects.image.url}}" class="img-fluid" alt="logo">
+                        </div>
+                        <div class="company-title">
+                            <p>{{projects.title}}</p>
+                            <h4>{{projects.bname}}</h4>
+                        </div>
+                    </div>
+                    <div class="company-address">
+                        <ul>
+                            <li>
+                                <i class="feather-map-pin"></i>{{projects.cityid.cityname}}
+                            </li>
+                            <li>
+                                <i class="feather-calendar"></i>{{projects.createddate}}
+                            </li>
+                            <li>
+                                <i class="feather-eye"></i>{{projects.views}} Views
+                            </li>
+                                 <i class="feather-edit-2"></i>{{projects.bids}} Proposal
+                            </li>
+                            {% if request.session.type == "A" %}
+                            
+                            <ins>
+                                {% if isLiked %}
+                                <a class="text-light" href="{% url 'likeProject' %}?pid={{projects.projectid}}"><i class="fas fa-heart text-black"></i></a>
+                                {% else %}
+                                <a href="{% url 'unlikeProject' %}?pid={{projects.projectid}}"><i class="fas fa-heart text-danger"></i></a>
+                                    
+                                {% endif %}
+                            </ins>
+                            {% else %}
+                            {% endif %}
+                            
+
+                        </ul>
+                    </div>
+                    <div class="project-proposal-detail">
+                        <ul>
+                            <li>
+                                <div class="proposal-detail-img">
+                                    <!-- <img src="{% static "img/icon/computer-line.svg" %}" alt="icons"> -->
+                                    <i class="fa-solid fa-layer-group"></i>
+                                </div>
+                                <div class="proposal-detail text-capitalize">
+                                    <span class=" d-block">Category</span>
+                                    <p class="mb-0">{{projects.categoryid}}</p>
+                                </div>
+                            </li>
+                            <li>
+                                
+                            </li>
+                            <li>
+                                <div class="proposal-detail-img">
+                                    <!-- <img src="{% static "img/icon/time-line.svg" %}" alt="icons"> -->
+                                    <i class="fa-solid fa-list"></i>
+                                    
+                                </div>
+                                <div class="proposal-detail text-capitalize">
+                                    <span class=" d-block">Subcategory</span>
+                                    <p class="mb-0">{{projects.subcategoryid}}</p>
+                                </div>
+                            </li>
+                           
+                            <li>
+                                <div class="proposal-detail-img">
+                                    <!-- <img src="{% static "img/icon/user-heart-line.svg" %}" alt="icons"> -->
+                                    <i class="fa-solid fa-hourglass"></i>
+                                </div>
+                                <div class="proposal-detail text-capitalize">
+                                    <span class=" d-block">Proposal StartDate</span>
+                                    <p class="mb-0">{{projects.bidstartdate|date:'y-m-d'}}</p>
+                                </div>
+                            </li>
+                            <li>
+                                
+                            </li>
+                            
+                            <li>
+                                <div class="proposal-detail-img">
+                                    <!-- <img src="{% static "img/icon/translate-2.svg" %}" alt="icons"> -->
+                                    <i class="fa-solid fa-hourglass-end"></i>
+                                </div>
+                                <div class="proposal-detail text-capitalize">
+                                    <span class=" d-block">Proposal EndDate</span>
+                                    <p class="mb-0">{{projects.bidenddate|date:'y-m-d'}}</p>
+                                </div>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="company-detail-block company-description">
+                    <h4 class="company-detail-title">Description</h4>
+                    <p>{{projects.description}}</p>
+                </div>
+                <div class="company-detail-block pb-0">
+                    <h4 class="company-detail-title">Project Proposals ({{bids|length}})</h4>
+                    {% for b in bids %}
+                    <div class="project-proposals-block ">
+                        <div class="project-proposals-img">
+                            <a href="{% url "adv2" %}?aid={{b.advertiserid.advertiserid}}">
+                            <img src="{{b.advertiserid.profilepic.url}}" class="img-fluid" alt="user"></a>
+                        </div>
+                        <div class="project-proposals-description">
+                            <div class="d-flex">
+                                <div>
+                                    <h5>{{b.advertiserid.name}}</h5>
+                                    {{b.advertiserid.username}}
+                                    <ul class="d-flex">
+                                       
+                                        <li>
+                                            <div class="proposals-user-review">
+                                                <span><i class="feather-calendar"></i>{{b.biddate}}</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <div class="proposals-pricing">
+                                        <h4>&#8377;{{b.bidamount}}</h4>
+                                        
+                                    </div> 
+                                </div>
+                            </div>
+                            <p class="mb-0" >{{b.description}}</p>
+                            {% if request.session.type == "C" %}
+                            {% if projects.userid.userid == request.session.uid %}
+                            {% if projects.status == 0 %}
+                            <input type="button" class="btn btn-primary" onclick="pay({{b.bidamount}},{{b.projectbidid}})" value="Pay Now And Assign Project">
+                        {% elif projects.advertiserid == b.advertiserid %}
+                            <input type="button" class="btn btn-primary"  value="Bid Selected">
+                        {% else %}
+                            <h4>Proposal Closed</h4>
+                        {% endif %}
+                            
+                            {% endif %}
+                            
+                            {% endif %}
+                            
+                            
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        
+            <!-- Blog Sidebar -->
+            <div class="col-lg-4 col-md-12 sidebar-right theiaStickySidebar project-client-view">	
+                {% if request.session.type == "A"%}
+                <div class="card budget-widget">
+                    <div class="budget-widget-details">
+                        <h6>Budget</h6>
+                        <h4>&#8377;{{projects.budget}}</h4>
+                        <p class="mb-0">Hourly Rate</p>
+                    </div>
+                    <div>
+                        {% if hasBidded == False and projects.status == 0 %}
+                            <a data-bs-toggle="modal" href="#file" class="btn proposal-btn btn-primary">Submit Proposal  </a>
+                        {% elif projects.status == 1 %}
+                            Project Closed
+                        {% else %}
+                            Proposal Placed
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+                {% if not projects.userid.userid == request.session.uid %}
+                <div class="card budget-widget">
+                    <div class="budget-widget-details">
+                        <h6>About Client</h6>
+                        <div class="company-detail-image">
+                            <img src="{{projects.userid.profilepic.url}}" class="img-fluid" alt="logo">
+                        </div>
+                        <h5>{{projects.userid.username}}</h5>
+                        <span>Member Since {{projects.userid.createdDt}}</span>
+                        {% comment %} <ul class="d-flex list-style mb-0 social-list">
+                            <li>
+                                <a href="javascript:void(0);" class="social-link-block">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" class="social-link-block">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" class="social-link-block">
+                                    <i class="fa-brands fa-linkedin-in"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" class="social-link-block">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                            </li>
+                        </ul> {% endcomment %}
+                        <ul class="d-flex list-style mb-0 client-detail-list">
+                            <li>
+                                <span>City</span>
+                                <p class="mb-0">{{projects.userid.cityid.cityname}}</p>
+                            </li>
+                            <li>
+                                <span>Total Projects</span>
+                                <p class="mb-0">{{userprojects}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <button type="button" class="text-light btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#exampleModal" >Contact Me</button>
+                        
+                    </div>
+                </div>
+                {% else %}
+                {% endif %}
+                
+                
+            </div>
+            <!-- /Blog Sidebar -->
+           
+        </div>
+    </div>
+</div>		
+<!-- /Page Content -->
+
+<!-- The Modal -->
+<div class="modal fade" id="file">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Send Your Proposal</h4>
+                <span class="modal-close"><a href="javascript:void(0);" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times orange-text"></i></a></span>
+            </div>
+            <div class="modal-body">	
+                <div class="modal-info proposal-modal-info">
+                    <form  method="post" enctype="multipart/data-form">{% csrf_token %}
+                        <div class="feedback-form proposal-form ">
+                            <div class="row">
+                               
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="mb-3">
+                                        <label class="focus-label">Amount</label>
+                                        <input type="text" class="form-control" name="txtamount">      
+                                    </div>
+                                </div>
+                           
+                                <div class="col-md-12 input-block">
+                                    <label class="form-label">Description</label>
+                                    <textarea name="txtdesc" class="form-control summernote"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="row">
+                            <div class="col-md-12 submit-section">
+                                <label class="custom_check">
+                                    <input type="checkbox" required name="select_time">
+                                    <span class="checkmark"></span> I agree to the Terms And Conditions
+                                </label>
+                            </div>
+                            <div class="col-md-12 submit-section text-end">
+                                <a data-bs-dismiss="modal" href="javascript:void(0);" class="btn btn-cancel submit-btn">Cancel</a>
+                                <input type="submit" name="placeBid" class="btn btn-primary submit-btn" value="Send Proposal">
+                            </div>
+                        </div>											
+                    </form>		
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /The Modal -->
+
+<!-- The Modal -->
+<div class="modal fade custom-modal" id="success">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content proposal-modal-info">
+            <div class="modal-header">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center modal-body-content pt-0">
+                    <h5 class="modal-title">Submitted Successfully</h5>
+                    <p>You will be Notified once, your Proposal approves.</p>
+                </div>
+                <div class="col-md-12 submit-section text-center">
+                    <a data-bs-dismiss="modal" href="freelancer-dashboard.html"  class="btn btn-primary submit-btn">Go to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% comment %} {% include "bottomScripts.html" %} {% endcomment %}
+</div>
+<!-- /The Modal -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    function pay(amount,reqid) {
+        fetch('{% url 'create_order' %}', { method: 'POST', headers: { 'X-CSRFToken': '{{ csrf_token }}' },body: new URLSearchParams({ "amount": amount, "order_id": reqid}) })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            var options = {
+                "key": "{{ razorpay_key }}",
+                "amount": data.amount,
+                "currency": "INR",
+                "name": "Your Company",
+                "description": "Test Transaction",
+                "order_id": data.id,
+                "handler": function (response) {
+            // Send payment details to backend for verification
+            fetch("{% url 'verify_payment' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}"
+                },
+                body: JSON.stringify({
+                    order_id: data.id,
+                    payment_id: response.razorpay_payment_id,
+                    signature: response.razorpay_signature
+                })
+            })
+            .then(res => res.json())
+            .then(result => {
+                    window.location.href = "{% url 'home' %}";  // ✅ Redirect to success page
+                
+            });
+        }
+            };
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+        });
+    };
+</script>
+
+</body>
+{% endblock %}
+{% block end %}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-body">
+		  <form method="post"> {% csrf_token %}
+			<h3 class="p-3">Send Message</h3>
+			<textarea name="txtMessage"></textarea>
+			
+			<input type="submit" value="send Message" name="btnSend" class="btn btn-primary mt-4">
+		  </form>
+		</div>
+	  </div>
+	</div>
+  </div>
+{% endblock end %}

@@ -1,0 +1,223 @@
+{% load static %}
+<html lang="en">
+
+<head>
+
+	<!-- Basic Page Needs
+================================================== -->
+	<title>{% block title %}{% endblock %}</title>
+	{% include "topScript.html" %}
+
+</head>
+
+<body class="account-page">
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<div class="login-wrapper">
+			<div class="content w-100 pt-4">
+				<!-- Login Content -->
+				<div class="account-content">
+					<div class="align-items-center justify-content-center">
+						<div class="login-right">
+							<div class="login-header text-center">
+								<a href="index.html"><img src="{% static 'img/hublogo.png' %}" alt="logo"
+										class="img-fluid"></a>
+								<h3>Edit Profile</h3>
+							</div>
+							{% comment %} <nav class="user-tabs mb-4">
+								<ul role="tablist" class="nav nav-pills nav-justified">
+									<li class="nav-item">
+										<a href="#developer" data-bs-toggle="tab" class="nav-link active">Freelancer</a>
+									</li>
+									<li class="nav-item">
+										<a href="#company" data-bs-toggle="tab" class="nav-link">Company</a>
+									</li>
+								</ul>
+							</nav> {% endcomment %}
+							<div class="tab-content pt-0">
+								<div role="tabpanel" id="developer" class="tab-pane fade active show">
+									<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+										<div class="input-block ">
+											<label class="focus-label">Name <span class="label-star"> *</span></label>
+											<input type="text" class="form-control floating" name="txtname" value="{{userdata.name}}" />
+										</div>
+
+										<div class="input-block ">
+											<label class="focus-label">UserName<span class="label-star">
+													*</span></label>
+											<input type="text" class="form-control" name="txtuname" value="{{userdata.username}}" />
+										</div>
+
+										<div class="input-block ">
+											<label class="focus-label">Password <span class="label-star">
+													*</span></label>
+											<div class="position-relative">
+												<input type="password" class="form-control floating pass-input"
+													name="txtpass" required value="{{userdata.password}}" />
+												{% comment %} <div class="password-icon ">
+													<span class="fas toggle-password fa-eye-slash"></span>
+												</div> {% endcomment %}
+											</div>
+										</div>
+										<div class="input-block ">
+											<label class="focus-label">Email Address<span class="label-star">
+													*</span></label>
+											<input type="email" class="form-control floating" name="txtemail"
+												value="{{userdata.emailid}}" />
+										</div>
+
+										<div class="input-block ">
+											<label class="focus-label">Gender<span class="label-star">
+													*</span></label>&nbsp;&nbsp;
+											{% comment %} <input type="radio" name="gender" value="Male"
+												class="input-radio with-border" />&nbsp;&nbsp;&nbsp;Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="radio" value="Female" name="gender" />&nbsp;&nbsp;Female {% endcomment %}
+											<input type="radio" name="gender" value="Male" {% if userdata.gender == "Male" %}checked{% endif %} />
+											Male&nbsp;&nbsp;&nbsp; 
+											<input type="radio" name="gender" value="Female" {% if userdata.gender == "Female" %}checked{% endif %} />
+											Female&nbsp;&nbsp;&nbsp; 
+						
+										</div>
+
+										<div class="input-block ">
+											<label class="focus-label">ContactNumber<span class="label-star">
+													*</span></label>
+											<input type="text" class="form-control floating" name="contact" value="{{userdata.contact}}" />
+										</div>
+
+										<div class="input-block ">
+											<label class="focus-label">Select City<span class="label-star">
+													*</span></label>&nbsp;&nbsp;&nbsp;&nbsp;
+											<select name="city" class="form-control floating">
+												<option value="" disabled {% if not userdata.cityid %}selected{% endif %}>Select a City</option>
+												{% for c in cities %}
+												<option value="{{c.cityid}}" {% if userdata.cityid.cityid == c.cityid %}selected{% endif %}>{{c.cityname}}</option>
+												{% endfor %}
+											</select>
+										</div>
+
+										<div class="input-block ">
+											<label class="focus-label">Select ProfilePic<span class="label-star">
+													*</span></label>&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="file" class="form-control floating" value="{{userdata.profilepic}}" name="fup" id="profilepic"
+											/>
+										</div>
+
+										<div class="dont-have">
+											<label class="custom_check">
+												<input type="checkbox" name="rem_password" required />
+												<span class="checkmark"></span> I have read and agree to all <a
+													href="privacy-policy.html">Terms &amp; Conditions</a>
+											</label>
+										</div>
+										<input
+											class="btn btn-primary w-100 btn-lg login-btn d-flex align-items-center justify-content-center"
+											type="submit" name="updatebtn" value="Edit Profile" />
+										{% comment %} <div class="login-or">
+											<p><span>Or</span></p>
+										</div> {% endcomment %}
+										{% comment %} <div class="row social-login">
+											<div class="col-sm-4">
+												<a href="javascript:void(0);" class="btn btn-block"><img
+														src="{% static 'img/icon/google-icon.svg' %}"
+														alt="Google">Google</a>
+											</div>
+											<div class="col-sm-4">
+												<a href="javascript:void(0);" class="btn btn-block"><img
+														src="{% static 'img/icon/fb-icon.svg' %}" alt="Fb">Facebook</a>
+											</div>
+											<div class="col-sm-4">
+												<a href="javascript:void(0);" class="btn btn-block"><img
+														src="{% static 'img/icon/ios-icon.svg' %}" alt="Apple">Apple</a>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-8 dont-have d-flex  align-items-center">Already have
+												account <a href="{% url 'login'  %}" class="ms-2">Sign in?</a></div>
+										</div> {% endcomment %}
+									</form>
+								</div>
+								{% comment %} <div role="tabpanel" id="company" class="tab-pane fade">
+									<form
+										action="https://kofejob.dreamstechnologies.com/html/template/onboard-screen.html">
+										<div class="input-block ">
+											<label class="focus-label">User Name <span class="label-star">
+													*</span></label>
+											<input type="email" class="form-control floating">
+										</div>
+										<div class="input-block ">
+											<label class="focus-label">Email Address<span class="label-star">
+													*</span></label>
+											<input type="email" class="form-control floating">
+										</div>
+										<div class="input-block ">
+											<label class="focus-label">Password <span class="label-star">
+													*</span></label>
+											<div class="position-relative">
+												<input type="password" class="form-control floating pass-input">
+												<div class="password-icon ">
+													<span class="fas toggle-password fa-eye-slash"></span>
+												</div>
+											</div>
+										</div>
+										<div class="input-block  mb-0">
+											<label class="focus-label">Confirm Password <span class="label-star">
+													*</span></label>
+											<div class="position-relative">
+												<input type="password" class="form-control floating pass-inputs">
+												<div class="password-icons">
+													<span class="fas toggle-passwords fa-eye-slash"></span>
+												</div>
+											</div>
+										</div>
+										<div class="dont-have">
+											<label class="custom_check">
+												<input type="checkbox" name="rem_password">
+												<span class="checkmark"></span> I have read and agree to all <a
+													href="privacy-policy.html">Terms &amp; Conditions</a>
+											</label>
+										</div>
+										<button
+											class="btn btn-primary w-100 btn-lg login-btn d-flex align-items-center justify-content-center"
+											type="submit">Sign In Now<i class="feather-arrow-right ms-2"></i></button>
+										<div class="login-or">
+											<p><span>Or</span></p>
+										</div>
+										<div class="row social-login">
+											<div class="col-sm-4">
+												<a href="javascript:void(0);" class="btn btn-block"><img
+														src="{% static 'img/icon/google-icon.svg'  %}" alt="Google">Google</a>
+											</div>
+											<div class="col-sm-4">
+												<a href="javascript:void(0);" class="btn btn-block"><img
+														src="{% static 'img/icon/fb-icon.svg' %}" alt="Fb">Facebook</a>
+											</div>
+											<div class="col-sm-4">
+												<a href="javascript:void(0);" class="btn btn-block"><img
+														src="{% static 'img/icon/ios-icon.svg' %}" alt="Apple">Apple</a>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-8 dont-have d-flex  align-items-center">Already have
+												account <a href="{% url 'login' %}" class="ms-2">Sign in?</a></div>
+										</div>
+									</form>
+								</div> {% endcomment %}
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Login Content -->
+			</div>
+		</div>
+
+
+		{% include "bottomScripts.html" %}
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- jQuery -->
+
+</body>

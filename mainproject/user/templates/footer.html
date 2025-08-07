@@ -1,0 +1,119 @@
+{% load static %}
+<!-- Footer -->	
+<footer class="footer">
+	<div class="footer-top ">
+		<div class="container">
+
+			<div class="row">
+				<div class=" col-lg-4 col-md-12">
+					<div class="footer-bottom-logo">
+						<a href="index.html" class="menu-logo">
+							<img src="{% static 'img/hublogo.png' %}" class="img-fluid" alt="Logo">
+						</a>
+						<p>"We Don't Just Advertise, We Inspire"</p>
+						<ul>
+							<li>
+								<a href="javascript:void(0);"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+							</li>
+							<li>
+								<a href="javascript:void(0);"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+							</li>
+							<li>
+								<a href="javascript:void(0);"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+							</li>
+							<li>
+								<a href="javascript:void(0);"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+							</li>
+						</ul>
+						{% comment %} <a href="javascript:void(0);" class="btn btn-connectus">Contact with us</a> {% endcomment %}
+					</div>
+				</div>
+				<div class=" col-lg-8 col-md-12">
+					<div class="row">
+						<div class="col-xl-3 col-md-6">
+							<div class="footer-widget footer-menu">
+								<h2 class="footer-title">Useful Links</h2>
+								<ul>
+									<li><a href="{% url "about" %}"><i class="fas fa-angle-right me-1"></i>About Us</a></li>
+									{% comment %} <li><a href="blog-list.html"><i class="fas fa-angle-right me-1"></i>Blog</a></li> {% endcomment %}
+									<li><a href="{% url "login" %}"><i class="fas fa-angle-right me-1"></i>Login</a></li>
+									<li><a href="{% url "register" %}"><i class="fas fa-angle-right me-1"></i>Register</a></li>
+									<li><a href="{% url "forgetpass" %}"><i class="fas fa-angle-right me-1"></i>Forgot Password</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-xl-3 col-md-6">
+							<div class="footer-widget footer-menu">
+								<h2 class="footer-title">Help & Support</h2>
+								<ul>
+									<li><a href="javascript:void(0);"><i class="fas fa-angle-right me-1"></i>Browse Candidates</a></li>
+									<li><a href="javascript:void(0);"><i class="fas fa-angle-right me-1"></i>Employers Dashboard</a></li>
+									<li><a href="javascript:void(0);"><i class="fas fa-angle-right me-1"></i>Job Packages</a></li>
+									<li><a href="javascript:void(0);"><i class="fas fa-angle-right me-1"></i>Jobs Featured</a></li>
+									<li><a href="javascript:void(0);"><i class="fas fa-angle-right me-1"></i>Post A Job</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-xl-3 col-md-6">
+							<div class="footer-widget footer-menu">
+								<h2 class="footer-title">Other Links</h2>
+								<ul>
+									{% if request.session.type == "C" %}
+									<li><a href="{% url "myprofile" %}"><i class="fas fa-angle-right me-1"></i>My Profile</a></li>
+									{% endif %}
+									{% if request.session.type == "A" %}
+									<li><a href="{% url "adv" %}"><i class="fas fa-angle-right me-1"></i>My Profile</a></li>
+									{% endif %}
+									{% if request.session.type == "C" %}
+									<li><a href="{% url "editprofile" %}"><i class="fas fa-angle-right me-1"></i>Edit Profile</a></li>
+									{% endif %}
+									{% if request.session.type == "A" %}
+									<li><a href="{% url "editprofile2" %}"><i class="fas fa-angle-right me-1"></i>Edit Profile</a></li>
+									{% endif %}
+									<li><a href="{% url "display" %}"><i class="fas fa-angle-right me-1"></i>Project</a></li>
+									{% comment %} <li><a href="project-details.html"><i class="fas fa-angle-right me-1"></i>Project Details</a></li> {% endcomment %}
+									{% if request.session.type == "C" %}
+									<li><a href="{% url "postproject" %}"><i class="fas fa-angle-right me-1"></i>Post Project</a></li>
+									{% endif %}
+								</ul>
+							</div>
+						</div>
+						<div class="col-xl-3 col-md-6">
+							<div class="footer-widget footer-menu">
+								<h2 class="footer-title">Connect With Us</h2>
+								<ul>
+									<li><a href="freelancer-chats.html"><i class="fas fa-angle-right me-1"></i>Chat</a></li>
+									<li><a href="faq.html"><i class="fas fa-angle-right me-1"></i>Faq</a></li>
+									<li><a href="freelancer-review.html"><i class="fas fa-angle-right me-1"></i>Reviews</a></li>
+									<li><a href="privacy-policy.html"><i class="fas fa-angle-right me-1"></i>Privacy Policy</a></li>
+									<li><a href="term-condition.html"><i class="fas fa-angle-right me-1"></i>Terms of use</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /Footer Top -->
+	
+	<!-- Footer Bottom -->
+	<div class="footer-bottom">
+		<div class="container">
+		
+			<!-- Copyright -->
+			<div class="copyright">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="copyright-text text-center">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Copyright -->						
+		</div>
+	</div>
+	<!-- /Footer Bottom -->				
+</footer>
+<!-- /Footer -->

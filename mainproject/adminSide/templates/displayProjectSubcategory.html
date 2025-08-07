@@ -1,0 +1,43 @@
+{% extends "adminBase.html" %}
+{% block container %}
+
+<form action="" method="Post">
+    <table border="1">
+
+    <tr>
+        <th>Project Subcategory ID</th>
+        <td><input type="number" name="txtpsid"></td>
+    </tr>
+
+    <tr>
+        <th>Project ID</th>
+        <td><input type="number" name="txtpid"></td>
+    </tr>
+
+    <tr>
+        <th>Subcategory</th>
+        <td><input type="text" name="txtsc"></td>
+    </tr>
+
+    <tr>
+        <th><input type="submit" name="scinsert" value="Submit">
+        <input type="submit" name="scupdate" value="Update">
+        <input type="submit" name="scdelete" value="Delete"></th>
+    </tr>
+</table>
+</form>
+        <table border="1" class="table table-hover">
+            <tr class="bg-primary">
+                <th>Project Subcategory ID</th>
+                <th>Project ID</th>
+                <th>Subcategory ID</th>
+            </tr>
+            {% for e in prosub %}
+            <tr>
+                <td>{{e.projectsubcategoryid}}</td>
+                <td>{{e.projectid.bname}}</td>
+                <td>{{e.subcategoryid.subcategoryname}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+{% endblock  %}

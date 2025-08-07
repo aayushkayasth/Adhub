@@ -1,0 +1,54 @@
+{% extends "adminBase.html" %}
+{% block container %}
+
+<form method="post" class="w-75 border p-4 mb-4 border-primary">{% csrf_token %}
+    <div class="mb-3">
+        <label for="" class="text-dark">SubCategory ID</label>
+        <input type="text" name="subid" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label for="" class="text-dark">SubCategory Name</label>
+        <input type="text" name="subname" class="form-control">
+        
+    </div>
+
+    <div class="mb-3">
+        <label for="" class="text-dark">category ID</label>
+        <select name="categoryname" class="form-control">
+            <option value="disabled">--select category name--</option>
+            {% for c in cat %}
+                <option value="{{c.categoryid}}">{{c.categoryname}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <input type="submit" class="btn btn-primary w-25" name="btnins" value="Submit">
+        {% comment %} <input type="submit" class="btn btn-primary w-25" name="btnupd" value="Update"> {% endcomment %}
+        
+    </div>
+</form>
+</div>
+    <table border="1" class="table table-hover">
+        <tr class="bg-primary">
+            <th>SubCategory ID</th>
+            <th>SubCategory Name</th>
+            <th>Category Id</th>
+            <th>Operations</th>
+        </tr>
+        {% for i in sc %}
+        <tr>
+            <td>{{i.subcategoryid}}</td>
+            <td>{{i.subcategoryname}}</td>
+            <td>{{i.categoryid.categoryname}}</td>
+            <td>
+                <a href="{% url "updSubcategory" %}?sid={{i.subcategoryid}}">Update</a>
+            </td>
+            <td>
+                <a href="{% url "displaySubcategory" %}?sid={{i.subcategoryid}}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock  %}

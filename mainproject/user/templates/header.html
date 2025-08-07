@@ -1,0 +1,149 @@
+{% load static %}
+<!-- Header -->
+<header class="header">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg header-nav p-0">
+			<div class="navbar-header">
+				<a id="mobile_btn" href="javascript:void(0);">
+					<span class="bar-icon">
+						<span></span>
+						<span></span>
+						<span></span>
+					</span>
+				</a>
+				<a href="index.html" class="navbar-brand logo">
+					<img src="{% static 'img/hublogo.png' %}" class="img-fluid" style="width:157px !important" alt="Logo">
+				</a>
+			</div>
+			<div class="main-menu-wrapper">
+				<div class="menu-header">
+					<a href="index.html" class="menu-logo">
+						<img src="{% static 'img/hublogo.png' %}" class="img-fluid" style="width:157px !important" alt="Logo">
+					</a>
+					<a id="menu_close" class="menu-close" href="javascript:void(0);">
+						<i class="fas fa-times"></i>
+					</a>
+				</div>
+				<ul class="main-nav">
+					<li class="active has-submenu">
+						<a href="{% url "home" %}">Home </a>
+						
+					</li>&nbsp; &nbsp;&nbsp; &nbsp;
+
+					<li class="active has-submenu">
+						<a href="{% url "display" %}">Projects </a>
+						
+					</li>&nbsp; &nbsp;&nbsp; &nbsp;
+
+					<li class="active has-submenu">
+						<a href="{% url 'about' %}">About Us</a>&nbsp; &nbsp;
+						
+					</li>
+					{% comment %} <li class="has-submenu active">
+						<a href="javascript:void(0);">For Freelancer <i class="fas fa-chevron-down"></i></a>
+						<ul class="submenu">
+							<li class="has-submenu active">
+								<a href="{% url "display" %}">Projects</a>
+								<ul class="submenu">
+									<li><a href="{% url "display" %}">Projects</a></li>
+									<li class="active"><a href="{% url "details" %}">Project Details</a></li> 
+								</ul>
+							</li>				 {% endcomment %}
+						</ul>
+					</li>
+				</ul>
+
+			</div>		 
+			<ul class="nav header-navbar-rht reg-head">												
+				{% comment %} <li><a href="{% url "register" %}" class="reg-btn"><img src="{% static 'img/icon/users.svg' %}" class="me-1" alt="img">Register</a></li>
+				<li><a href="{% url "login" %}" class="log-btn"><img src="{% static 'img/icon/lock.svg' %}" class="me-1" alt="img"> Login</a></li> {% endcomment %}
+				{% if request.session.type == "C"%}
+				<li><a href="{% url "postproject" %}" class="login-btn"><i class="feather-plus me-1"></i>Post a Project </a></li>
+				{% endif %}
+				{% comment %} <li class="nav-item dropdown account-item">
+					<a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+						<span class="user-img">
+							<img src="{{request.session.fup}}" alt="Img">
+						</span>
+						<span>{{request.session.uname}}
+	
+						</span>
+					
+						<div>	
+						<a class="dropdown-item" href="company-profile.html"><img src="{% static "img/icon/user-dropdown-icon--01.svg" %}" alt="Img"> My Profile</a>
+						<a class="dropdown-item" href="manage-projects.html"><img src="{% static "img/icon/user-dropdown-icon--02.svg" %}" alt="Img"> My Projects</a>
+						<a class="dropdown-item" href="favourites.html"><img src="{% static "img/icon/user-dropdown-icon--03.svg" %}" alt="Img">My Subscription</a>
+						<a class="dropdown-item" href="deposit-funds.html"><img src="{% static "img/icon/user-dropdown-icon--04.svg" %}" alt="Img">My Statement</a>
+						<a class="dropdown-item" href="chats.html"><img src="{% static "img/icon/user-dropdown-icon--05.svg" %}" alt="Img"> Message</a>
+						<a class="dropdown-item" href="profile-settings.html"><img src="{% static "img/icon/user-dropdown-icon--06.svg" %}" alt="Img"> Profile Settings</a>
+						<a class="dropdown-item" href="login.html"><img src="{% static "img/icon/user-dropdown-icon--07.svg" %}" alt="Img"> Logout</a>
+						</div>
+					</a>
+					
+				</li> {% endcomment %}
+				{% if not request.session.uid %}
+						<span class="user-img">
+							<img src="{% static 'img/default.png' %}" alt="Img">
+						</span>
+						{% else %}
+				<li class="nav-item dropdown account-item">
+					<a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+						
+						<span class="user-img">
+							<img src="{{request.session.fup}}" alt="Img">
+						</span>
+						<span>{{request.session.uname}}</span>
+						
+						
+					</a>
+					<div class="dropdown-menu emp">
+						<div class="drop-head">
+							<a href="javascript:void(0)" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+								<span class="user-img">
+									<img src="{{request.session.fup}}" alt="Img">
+								</span>
+								<div>
+									<span>{{request.session.uname}}</span>
+									{% comment %} <p><span class="_cf_email_" data-cfemail="b2dbdcd4ddf2c5d3dec6d7c0d5c0dbd4d4dbdc9cd1dddf">{{request.session.uname}}</span></p> {% endcomment %}
+								</div>
+								
+							</a>
+						</div>	
+						{% if request.session.type == "C"%}
+						<a class="dropdown-item" href="{% url 'myprofile' %}"><img src="{% static 'img/icon/user-dropdown-icon--01.svg' %}" alt="Img"> My Profile</a>
+						{% else %}
+						<a class="dropdown-item" href="{% url 'adv' %}"><img src="{% static 'img/icon/user-dropdown-icon--01.svg' %}" alt="Img"> My Profile</a>
+
+						{% endif %}
+						{% if request.session.type == "C"%}
+						<a class="dropdown-item" href="{% url "myprojects" %}"><img src="{% static 'img/icon/user-dropdown-icon--02.svg' %}" alt="Img"> My Projects</a>
+						{% endif %}
+						{% if request.session.type == "A"%}
+						<a class="dropdown-item" href="{% url "mybids" %}"><img src="{% static 'img/icon/user-dropdown-icon--02.svg' %}" alt="Img"> My Proposal </a>
+						{% endif %}
+
+						{% if request.session.type == "A"%}
+						<a class="dropdown-item" href="{% url "LikeData" %}"><img src="{% static 'img/icon/user-dropdown-icon--02.svg' %}" alt="Img">Favourite</a>
+						{% endif %}
+						
+						{% comment %}<a class="dropdown-item" href="favourites.html"><img src="{% static 'img/icon/user-dropdown-icon--03.svg' %}" alt="Img">My Subscription</a>
+						<a class="dropdown-item" href="deposit-funds.html"><img src="{% static 'img/icon/user-dropdown-icon--04.svg' %}" alt="Img">My Statement</a>
+						<a class="dropdown-item" href="chats.html"><img src="{% static 'img/icon/user-dropdown-icon--05.svg' %}" alt="Img"> Message</a>
+						 <a class="dropdown-item" href="{% url "editprofile" %}"><img src="{% static 'img/icon/user-dropdown-icon--06.svg' %}" alt="Img"> Profile Settings</a> {% endcomment %}
+						{% if request.session.type == "C"%}
+						<a class="dropdown-item" href="{% url "editprofile" %}"><img src="{% static 'img/icon/user-dropdown-icon--02.svg' %}" alt="Img">Profile Settings</a>
+						{% endif %}
+						{% if request.session.type == "A"%}
+						<a class="dropdown-item" href="{% url "editprofile2" %}"><img src="{% static 'img/icon/user-dropdown-icon--02.svg' %}" alt="Img">Profile Settings</a>
+						{% endif %}
+						<a class="dropdown-item" href="{% url "logout" %}"><img src="{% static 'img/icon/user-dropdown-icon--07.svg' %}" alt="Img"> Logout</a>
+					</div>
+				</li>
+				{% endif %}
+			</ul>
+		</nav>
+		{% comment %} {% include "bottomScripts.html" %} {% endcomment %}
+	</div>
+	
+</header>
+<!-- /Header -->

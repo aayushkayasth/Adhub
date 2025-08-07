@@ -1,0 +1,52 @@
+{% extends "adminBase.html" %}
+{% block container %}
+<div class="container">
+    <form method="post" class="w-75 border p-4 mb-4 border-primary">{% csrf_token %}
+        <div class="mb-3">
+            <label for="" class="text-dark">Enter City id:</label>
+            <input type="text" name="txtcid" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="" class="text-dark">Enter City Name:</label>
+            <input type="text" name="txtcname" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="" class="text-dark">Choose state Name:</label>
+            <select name="state" class="form-control">
+                <option value="disabled">--select state name--</option>
+                {% for s in st %}
+                    <option value="{{s.stateid}}">{{s.statename}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <input type="submit" class="btn btn-primary w-25" name="btnins" value="Submit">
+            {% comment %} <input type="submit" class="btn btn-primary w-25" name="btnupd" value="Update"> {% endcomment %}
+            
+        </div>
+    </form>
+</div>
+    
+
+    <table border="1" class="table table-hover">
+        <tr class="bg-primary">
+            <th>City ID</th>
+            <th>City Name</th>
+            <th>State ID</th>
+            <th>Operations</th>
+        </tr>
+        {% for a in ct %}
+        <tr>
+            <td>{{a.cityid}}</td>
+            <td>{{a.cityname}}</td>
+            <td>{{a.stateid.statename}}</td>
+            <td>
+                <a href="{% url "updCity" %}?cid={{a.cityid}}">Update</a>
+            </td>
+            <td>
+                <a href="{% url "displayCity" %}?cid={{a.cityid}}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock  %}

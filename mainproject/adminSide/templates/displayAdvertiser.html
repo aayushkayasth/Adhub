@@ -1,0 +1,46 @@
+{% extends "adminBase.html" %}
+{% block container %}
+<div class="container">
+    <table border="1" class="table-bordered table-hover" >
+        <tr class="bg-primary">
+            <th>Advertiser ID</th>
+            <th>Name</th>
+            <th>Advertiser Name</th>
+            <th>Password</th>
+            <th>Email ID</th>
+            <th>Gender</th>
+            <th>City ID</th>
+            <th>Contact</th>
+            <th>Profile Picture</th>
+            <th>Is Verified</th>
+            <th>Website</th>
+            <th>Instagram Link</th>
+            <th>Facebook Link</th>
+            <th>Linkeid Link</th>
+            <th>Registration Date</th>
+        </tr>
+        {% for a in adver %}
+        <tr>
+            <td>{{a.advertiserid}}</td>
+            <td>{{a.name}}</td>
+            <td>{{a.advertisername}}</td>
+            <td>{{a.password}}</td>
+            <td>{{a.emailid}}</td>
+            <td>{{a.gender}}</td>
+            <td>{{a.cityid.cityname}}</td>
+            <td>{{a.contact}}</td>
+            <td>
+                <img src="{{a.profilepic.url}}" height="70px" width="70px">
+            </td>
+            <td>{{a.isverified}}</td>
+            <td>{{a.website}}</td>
+            <td>{{a.instagramlink}}</td>
+            <td>{{a.facebooklink}}</td>
+            <td>{{a.linkeidlink}}</td>
+            <td>{{a.registrationdate}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+       
+{% endblock  %}

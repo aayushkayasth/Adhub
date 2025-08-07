@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+{% block container %}
+{% load static %}
+
+
+<!-- Page Content -->
+			
+<div class="content content-page">
+    <div class="container">
+        <div class="row">
+            
+            {% comment %} <div class="col-xl-3 col-lg-4 theiaStickySidebar">
+                <div class="settings-widget">
+                    <div class="settings-header d-sm-flex flex-row flex-wrap text-center text-sm-start align-items-center">
+                        <a href="freelancer-profile.html"><img alt="profile image" src="{{request.session.fup}}" class="avatar-lg rounded-circle"></a>
+                        <div class="ms-sm-3 ms-md-0 ms-lg-3 mt-2 mt-sm-0 mt-md-2 mt-lg-0">
+                            <h3 class="mb-0"><a href="freelancer-profile.html">{{request.session.uname}}</a><img src="assets/img/icon/verified-badge.svg" class="ms-1" alt="Img"></h3>
+                            <p class="mb-0">{{request.session.uname}}</p>
+                        </div>
+                    </div>
+                    <div class="settings-menu">
+                        <div id="sidebar-menu" class="sidebar-menu">
+                            <ul>
+                                <li class="nav-item">
+                                    <a href="freelancer-dashboard.html" class="nav-link">
+                                        <img src="{% static "img/icon/sidebar-icon-01.svg" %}" alt="Img"> Dashboard
+                                        
+                                    </a>
+                                </li>
+                                <li class="nav-item submenu">
+                                    <a href="freelancer-project-proposals.html" class="nav-link active">
+                                        <img src="{% static "img/icon/sidebar-icon-02.svg" %}" alt="Img"> Projects
+                                        <span class="menu-arrow"></span>
+                                    </a>
+                                    <ul class="sub-menu-ul">
+                                        <li>
+                                            <a href="freelancer-project-proposals.html" class="active">My Proposal</a>
+                                        </li>
+                                        <li>
+                                            <a href="freelancer-ongoing-projects.html">Ongoing Projects</a>
+                                        </li>
+                                        <li>
+                                            <a href="freelancer-completed-projects.html">Completed Projects</a>
+                                        </li>
+                                        <li>
+                                            <a href="freelancer-cancelled-projects.html">Cancelled Projects</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item submenu">
+                                    <a href="freelancer-favourites.html" class="nav-link">
+                                        <img src="assets/img/icon/sidebar-icon-03.svg" alt="Img"> Favourites
+                                        <span class="menu-arrow"></span>
+                                    </a>
+                                    <ul class="sub-menu-ul">
+                                        <li>
+                                            <a href="freelancer-favourites.html">Bookmarked Projects</a>
+                                        </li>
+                                        <li>
+                                            <a href="freelancer-invitations.html">Invitations</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="freelancer-review.html" class="nav-link">
+                                        <img src="assets/img/icon/sidebar-icon-04.svg" alt="Img"> Reviews
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="freelancer-portfolio.html" class="nav-link">
+                                        <img src="assets/img/icon/sidebar-icon-05.svg" alt="Img"> Portfolio
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="freelancer-chats.html" class="nav-link">
+                                        <img src="assets/img/icon/sidebar-icon-06.svg" alt="Img"> Chat
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="freelancer-withdraw-money.html" class="nav-link">
+                                        <img src="assets/img/icon/sidebar-icon-07.svg" alt="Img"> Payments
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="freelancer-payout.html" class="nav-link">
+                                        <img src="assets/img/icon/sidebar-icon-08.svg" alt="Img"> Payout
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="freelancer-withdraw-money.html" class="nav-link">
+                                        <img src="assets/img/icon/sidebar-icon-09.svg" alt="Img"> Statement
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="javascript:void(0);" class="nav-link">
+                                        <img src="assets/img/icon/sidebar-icon-10.svg" alt="Img">  Settings
+                                        <span class="menu-arrow"></span>
+                                    </a>
+                                    <ul class="sub-menu-ul">
+                                        <li>
+                                            <a href="freelancer-profile-settings.html">Profile Setting</a>
+                                        </li>
+                                        <li>
+                                            <a href="freelancer-membership.html">Plan & Billing</a>
+                                        </li>
+                                        <li>
+                                            <a href="freelancer-verify-identity.html">Verify Identity</a>
+                                        </li>
+                                        <li>
+                                            <a href="freelancer-change-password.html">Changes Password</a>
+                                        </li>
+                                        <li>
+                                            <a href="freelancer-delete-account.html">Delete Account</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="index.html" class="nav-link">
+                                        <img src="assets/img/icon/sidebar-icon-11.svg" alt="Img"> Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>					
+            </div>	 {% endcomment %}
+            
+            <div class="col-xl-9 col-lg-8">
+                
+                <div class="page-title">
+                    <h3>My Proposals</h3>
+                </div>
+                
+                {% for p in mybids %}
+                <!-- Proposals list -->
+                <div class="proposals-section" style="margin-top:20px">
+                    
+                    <!-- Proposals -->
+                    <div class="freelancer-proposals">
+                        <div class="project-proposals align-items-center freelancer">
+                            <div class="proposal-info">
+                                <div class="proposals-details">
+                                    <h6 class="">{{p.projectid.bname}}</h6>
+                                    <h3 class="proposals-title">{{p.projectid.title}}</h3>
+                                    <ul>
+                                        <li>
+                                            <div class="proposal-img">
+                                                <div class="proposal-client">
+                                                    <img src="{{p.userid.profilepic.url}}" alt="Img" class="img-fluid">
+                                                    <h4>{{p.userid.username}}</h4>
+                                                    <span class="info-btn">client</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="proposal-client-price">
+                                                <h4 class="title-info">Client Price</h4>
+                                                <h3 class="client-price">{{p.projectid.budget}}<span class="price-type">( Fixed )</span></h3>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="proposal-job-type">
+                                                <h4 class="title-info">Sub Category</h4>
+                                                <h3>{{p.projectid.subcategoryid}}</h3>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="project-amount">
+                                                <h4 class="title-info">Your Price</h4>
+                                                <h3>{{p.bidamount}}</span></h3>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="project-action text-center">
+                                                <a href="{% url "details" %}?pid={{p.projectid.projectid}}">View Project</a>
+                                            </div> 
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- /Proposals list -->
+                {% endfor %}
+            </div>
+           
+        </div>
+       
+    </div>
+   
+    {% comment %} {% include "bottomScripts.html" %} {% endcomment %}
+    
+</div>	
+
+{% endblock %}
+<!-- /Page Content -->

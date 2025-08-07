@@ -1,0 +1,42 @@
+{% extends "adminBase.html" %}
+{% block container %}
+
+<form method="post" class="w-75 border p-4 mb-4 border-primary">{% csrf_token %}
+    <div class="mb-3">
+        <label for="" class="text-dark">Category ID</label>
+        <input type="text" name="catid" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label for="" class="text-dark">Category Name</label>
+        <input type="text" name="catname" class="form-control">
+        
+    </div>
+
+    <div class="mb-3">
+        <input type="submit" class="btn btn-primary w-25" name="btnins" value="Submit">
+        {% comment %} <input type="submit" class="btn btn-primary w-25" name="btnupd" value="Update"> {% endcomment %}
+        
+    </div>
+</form>
+</div>
+    <table border="1" class="table table-hover">
+        <tr class="bg-primary">
+            <th>Category ID</th>
+            <th>Category Name</th>
+            <th>Operations</th>
+        </tr>
+        {% for c in cat %}
+        <tr>
+            <td>{{c.categoryid}}</td>
+            <td>{{c.categoryname}}</td>
+            <td>
+                <a href="{% url "updcategory" %}?cid={{c.categoryid}}">Update</a>
+            </td>
+            <td>
+                <a href="{% url "displayCategory" %}?cid={{c.categoryid}}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock  %}

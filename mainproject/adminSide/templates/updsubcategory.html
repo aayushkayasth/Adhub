@@ -1,0 +1,27 @@
+{% extends "adminBase.html" %}
+{% block container %}
+<div class="container">
+    <form method="post" class="w-75 border p-4 mb-4 border-primary">{% csrf_token %}
+        <div class="mb-3">
+            <label for="" class="text-dark">Enter SubCategory ID</label>
+            <input type="text" name="scaid" value="{{subData.subcategoryid}}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="" class="text-dark">Enter SubCategory Name:</label>
+            <input type="text" name="subcatname" value="{{subData.subcategoryname}}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="" class="text-dark">Choose Category Name:</label>
+            <select name="state" class="form-control">
+                {% comment %} <option value="disabled">--select state name--</option> {% endcomment %}
+                {% for s in category %}
+                    <option value="{{s.categoryid}}" {% if subData.categoryid.categoryid == s.categoryid %}selected{% endif %}>{{s.categoryname}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <input type="submit" class="btn btn-primary w-25" name="btnupd" value="Update">
+        </div>
+    </form>
+</div>
+{% endblock  %}

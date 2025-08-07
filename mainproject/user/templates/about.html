@@ -1,0 +1,383 @@
+{% extends "base.html" %}
+{% block container %}
+{% load static %}
+
+<!-- Breadcrumb -->
+<div class="bread-crumb-bar">
+    <div class="container">
+        <div class="row align-items-center inner-banner">
+            <div class="col-md-12 col-12 text-center">
+                <div class="breadcrumb-list">
+                    <h3>About Us</h3>
+                    <nav aria-label="breadcrumb" class="page-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url "home" %}"> Home</a></li>
+                            <li class="breadcrumb-item" aria-current="page">About Us</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+
+<!-- About -->
+<section class="section about">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 d-flex align-items-center aos">
+                <div class="about-content">
+                    <h2>Welcome to AdHub—Your Gateway to Effective Marketing Solutions!.</h2>
+                    <p>At AdHub, we specialize in Transit Media, Digital Media, Electronic Media, and Outdoor Media, offering a comprehensive suite of services tailored to meet the diverse needs of our clients. Whether you’re a business-to-business enterprise or a business-to-consumer brand, our dedicated team of specialists is committed to delivering tailored solutions that drive tangible results.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 ">
+                <div class="about-content-img aos">
+                    <img src="{% static "img/blog/aboutus.jpg" %}" class="img-fluid" alt="img">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-content-img aos">
+                    <img src="{% static "img/blog/aboutus1.jpg" %}" class="img-fluid" alt="img">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /About -->
+
+<section class="section projects">
+    <div class="container">
+        <div class="row row-gap">					
+            <div class="col-md-12 col-sm-12 col-12 mx-auto text-center">
+                <div class="section-header aos  " >
+                    <h2 class="header-title">What’s great about it?</h2>
+                    <p>All the features of AdHub below</p>
+                </div>
+            </div>		
+            <!-- Feature Item --> 
+            <div class="col-xl-3 col-md-6 aos d-flex  " >
+                <div class="feature-items d-flex align-items-center justify-content-center flex-column">
+                    <div class="feature-icon">
+                        <img src="{% static "img/icon/great1.svg" %}" class="img-fluid" alt="Img">
+                    </div>
+                    <div class="feature-content course-count text-center">
+                        <h3>Browse Projects</h3>
+                            <p>Find professionals you can trust by browsing their samples of previous work .</p>
+                     </div>
+                </div>
+            </div>
+            <!-- /Feature Item -->
+            
+            <!-- Feature Item -->
+            <div class="col-xl-3 col-md-6 aos d-flex  ">
+                <div class="feature-items d-flex align-items-center justify-content-center flex-column">
+                    <div class="feature-icon">
+                        <img src="{% static "img/icon/great2.svg" %}" class="img-fluid" alt="Img">
+                    </div>
+                    <div class="feature-content course-count text-center">
+                        <h3>Fast Proposals</h3>
+                        <p>Receive obligation free quotes from our talented advertiser fast. 80% of projects gets proposal.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- /Feature Item -->
+            
+            <!-- Feature Item -->
+            <div class="col-xl-3 col-md-6 aos d-flex  ">
+                <div class="feature-items d-flex align-items-center justify-content-center flex-column">
+                    <div class="feature-icon">
+                        <img src="{% static "img/icon/great3.svg" %}" class="img-fluid" alt="Img">
+                    </div>
+                    <div class="feature-content course-count text-center">
+                        <h3>Quality Work</h3>
+                            <p>AdHub.com has by far the largest pool of quality advertiser globally- over 50 million to choose from.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- /Feature Item -->	
+
+            <!-- Feature Item -->
+            <div class="col-xl-3 col-md-6 aos d-flex  ">
+                <div class="feature-items d-flex align-items-center justify-content-center flex-column">
+                    <div class="feature-icon">
+                        <img src="{% static "img/icon/great4.svg" %}" class="img-fluid" alt="Img">
+                    </div>
+                    <div class="feature-content course-count text-center">
+                        <h3>Track Progress</h3>
+                            <p>Keep up-to-date and on-the-go with our time tracker Always know what advertiser are up
+                                to.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- /Feature Item -->
+                                    
+        </div>
+    </div>
+</section>
+
+<section class="section review">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-lg-6">
+                <div class="aos aos-init ">
+                    <div class="demand-professional">
+                        <h2>Why Choose AdHub?</h2>
+                        {% comment %} <p>Through strategy, design, and planning we build brand identities that connect with your template. We then fine-tune a marketing plan that allows us to laser focus.</p>
+                     {% endcomment %}
+                    </div>
+                    <div class="demand-post-job align-items-start">
+                        <div class="demand-post-img">
+                            <img src="{% static "img/icon/checks.svg" %}" alt="Img" class="img-fluid">
+                        </div>
+                        <div class="demand-content">
+                            <p>At AdHub, we pride ourselves on delivering end-to-end service, from concept development and design to execution and reporting. Our experienced team of designers, marketers, and field experts work closely with you to craft visually compelling, results-driven ads that capture attention and leave a lasting impression. We focus on delivering personalized strategies tailored to your industry, helping you stand out in today’s competitive marketplace
+                            </p>
+                        </div>
+                    </div>
+                    <div class="demand-post-job align-items-start">
+                        <div class="demand-post-img">
+                            <img src="{% static "img/icon/checks.svg" %}" alt="Img" class="img-fluid">
+                        </div>
+                        <div class="demand-content">
+                            <p>Our coverage area primarily spans Surat, but our reach extends far beyond geographical boundaries. We proudly serve businesses of all types across India, leveraging our expertise to help them achieve their marketing objectives with precision and efficiency.</p>
+                        </div>
+                    </div>
+                    <div class="demand-post-job align-items-start">
+                        <div class="demand-post-img">
+                            <img src="{% static "img/icon/checks.svg" %}" alt="Img" class="img-fluid">
+                        </div>
+                        <div class="demand-content">
+                            <p>From restaurants and salons to retail shops and online retailers, we have had the privilege of working with a diverse array of clients, each with unique goals and aspirations. Our portfolio includes esteemed business-to-business entities such as business brokerages, insurance agencies, manufacturers, law firms, and accounting firms, among others.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="work-set-image">
+                    <div class="recent-pro-img aos">
+                        <img src="{% static "img/blog/abt3.png" %}" alt="Img" class="img-fluid ">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section feature-count feature-count-three">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-12 mx-auto">
+                <div class="section-header section-header-three feature-count-head aos  ">	
+                    <h2 class="header-title">Achievement We Have Earned</h2>
+                    {% comment %} <p>At Freelancer, we believe that talent is borderless and opportunity should be too.</p> {% endcomment %}
+                </div>
+            </div>
+        </div>
+        <div class="row section-bottom-cards">					
+                    
+             <!-- Feature Item -->
+             <div class="col-xl-3 col-md-6">
+                <div class="feature-item freelance-count aos aos-init aos-animate">
+                    <div class="feature-icon ">
+                        <img src="{% static "img/icon/count-icon-01.svg" %}" class="img-fluid" alt="Img">
+                    </div>
+                    <div class="feature-content course-count">
+                        <h3 class="counter-up">10</h3>
+                        <p>Total Users</p>
+                    </div>
+                </div>
+            </div>
+            <!-- /Feature Item -->
+
+             <!-- Feature Item -->
+            <div class="col-xl-3 col-md-6">
+                <div class="feature-item freelance-count aos aos-init aos-animate">
+                    <div class="feature-icon ">
+                        <img src="{% static "img/icon/count-icon-01.svg" %}" class="img-fluid" alt="Img">
+                    </div>
+                    <div class="feature-content course-count">
+                        <h3 class="counter-up">3</h3>
+                        <p>Total Advertiser</p>
+                    </div>
+                </div>
+            </div>
+            <!-- /Feature Item -->
+
+            <!-- Feature Item -->
+            <div class="col-xl-3 col-md-6">
+                <div class="feature-item aos aos-init aos-animate">
+                    <div class="feature-icon">
+                        <img src="{% static "img/icon/count-icon-02.svg" %}" class="img-fluid" alt="Img">
+                    </div>
+                    <div class="feature-content course-count">
+                        <h3><span class="counter-up">23</span></h3>
+                        <p>Total Projects</p>
+                    </div>
+                </div>
+            </div>
+            <!-- /Feature Item -->
+
+            <!-- Feature Item -->
+            <div class="col-xl-3 col-md-6">
+                <div class="feature-item comp-project aos aos-init aos-animate">
+                    <div class="feature-icon">
+                        <img src="{% static "img/icon/count-icon-04.svg" %}" class="img-fluid" alt="Img">
+                    </div>
+                    <div class="feature-content course-count">
+                        <h3 class="counter-up">20</h3>
+                        <p>Companies Registered</p>
+                    </div>
+                </div>
+            </div>
+            <!-- /Feature Item -->
+                                    
+        </div>
+    </div>
+</section>
+
+<!-- Review -->
+<section class="section testimonial-section review review-four">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-header aos text-center">
+                    {% comment %} <h2 class="header-title">Client testimonials</h2>
+                    <p>Learning communicate to global world and build a bright future and career development, increase your skill with our histudy.</p>
+                 {% endcomment %}
+                </div>
+            </div>
+        </div>
+        <div id="testimonial-slider" class="owl-carousel owl-theme testimonial-slider aos">
+                    
+            <!-- Review Widget -->
+            <div class="review-blog">
+                <div class="review-top d-flex align-items-center">
+                    <div class="review-img">
+                        <a href="review.html"><img class="img-fluid" src="{% static "img/review/review-01.jpg" %}" alt="Post Image"></a>
+                    </div>
+                    <div class="review-info">
+                        <h3><a href="review.html">Durso Raeen</a></h3>
+                        <h5>Project Lead</h5>								
+                        
+                    </div>
+                    
+                </div>
+                <div class="review-content">
+                    <p class="ms-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Volutpat orci enim, mattis nibh aliquam dui, nibh faucibus aenean.</p>
+                    <div class="rating">
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- / Review Widget -->
+            
+            <!-- Review Widget -->
+            <div class="review-blog">
+                <div class="review-top d-flex align-items-center">
+                    <div class="review-img">
+                        <a href="review.html"><img class="img-fluid" src="{% static "img/review/review-02.jpg" %}" alt="Post Image"></a>
+                    </div>
+                    <div class="review-info">
+                        <h3><a href="review.html">Camelia Rennesa</a></h3>
+                        <h5>Project Lead</h5>								
+                        
+                    </div>
+                    
+                </div>
+                <div class="review-content">
+                    <p class="ms-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Volutpat orci enim, mattis nibh aliquam dui, nibh faucibus aenean.</p>
+                    <div class="rating">
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- /Review Widget -->
+            
+            <!-- Review Widget -->
+            <div class="review-blog">
+                <div class="review-top d-flex align-items-center">
+                    <div class="review-img">
+                        <a href="review.html"><img class="img-fluid" src="{% static "img/review/review-03.jpg" %}" alt="Post Image"></a>
+                    </div>
+                    <div class="review-info">
+                        <h3><a href="review.html">Brayan</a></h3>
+                        <h5>Team Lead</h5>								
+                        
+                    </div>
+                    
+                </div>
+                <div class="review-content">
+                    <p class="ms-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Volutpat orci enim, mattis nibh aliquam dui, nibh faucibus aenean.</p>
+                    <div class="rating">
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- /Review Widget -->
+            
+            <!-- Review Widget -->
+            <div class="review-blog">
+                <div class="review-top d-flex align-items-center">
+                    <div class="review-img">
+                        <a href="review.html"><img class="img-fluid" src="{% static "img/review/review-02.jpg" %}" alt="Post Image"></a>
+                    </div>
+                    <div class="review-info">
+                        <h3><a href="review.html">Davis Payerf</a></h3>
+                        <h5>Project Lead</h5>								
+                        
+                    </div>
+                    
+                </div>
+                <div class="review-content">
+                    <p class="ms-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Volutpat orci enim, mattis nibh aliquam dui, nibh faucibus aenean.</p>
+                    <div class="rating">
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- /Review Widget -->
+        </div>
+    </div>
+</section>
+<!-- / Review -->
+
+<section class="section job-registers">
+    
+    <div class="container position-relative job-register">		
+        <div class="float-img">
+            <img src="{% static "img/opportunity.png" %}" alt="img">
+        </div>		
+        <div class="row">
+            <div class="col-12">
+                <div class="register-job-blk">
+                    <div class="job-content-blk aos aos-init aos-animate" >
+                        <h2>Find Your Next Great Advertisement!</h2>
+                        <p>We are here to help you to meet your goals.</p>
+                        <a href="{% url 'register'%}" class="btn all-btn">Join Now</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,356 @@
+{% extends "base.html" %}
+{% load static %}
+{% block container %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="w-100">
+            <section class="home-banner home-five row-middle">
+                <div class="container">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-12 ">
+                            <div class="banner-blk-five justify-content-center" >
+                                <div class="banner-content text-center aos" >
+                                
+                                    <h1>Boost your brand with the perfect advertisement and projects tailored to your needs! From eye-catching visuals to strategic campaigns, we create compelling content that drives results.</h1>
+                                    {% comment %} <p>With the world's #1 Developers Marketplace</p>
+                                    <form class="form"  name="store" id="store" method="post" action="https://kofejob.dreamstechnologies.com/html/template/project.html">
+                                        <div class="form-inner">
+                                            <div class="input-group">
+                                                <span class="drop-detail">
+                                                    <select class="form-control select" name="storeID">
+                                                        <option value="project.html">Projects</option>
+                                                        <option value="developer.html">Freelancers</option>
+                                                    </select>
+                                                </span>
+                                                <input type="email" class="form-control" placeholder="Keywords">
+                                                <button class="btn btn-primary sub-btn" type="submit">Search</button>
+                                            </div>
+                                        </div>
+                                    </form> {% endcomment %}
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            <div class="trusted-by-section">
+                <span>Trusted By :</span>
+                <ul>
+                    <li>
+                        <img src="{% static "img/icon/trusted1.svg" %}" alt="Img">
+                    </li>
+                    <li>
+                        <img src="{% static "img/icon/trusted2.svg" %}" alt="Img">
+                    </li>
+                    <li>
+                        <img src="{% static "img/icon/trusted3.svg" %}" alt="Img">
+                    </li>
+                    <li>
+                        <img src="{% static "img/icon/trusted4.svg" %}" alt="Img">
+                    </li>
+                    <li>
+                        <img src="{% static "img/icon/trusted5.svg" %}" alt="Img">
+                    </li>
+                </ul>
+            </div>
+        
+            {% if request.session.type == "A"%}
+            <section class="project-by-category">
+                <div class="container">
+                    <div class="row ">
+                        <div class="col-md-12 col-sm-12 col-12 mx-auto text-center">
+                            <div class="section-header">
+                                <h2 class="header-title">Browse Projects By Category</h2>
+                                {% comment %} <p>Get work done in over 9 different categories</p> {% endcomment %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="category-slider-section">
+                        <div class="row">
+                            {% for c in cat %}
+                        <div class="col-md-3">
+                            <div class="card" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{c.subcategoryname}}</h5>
+                                    <p class="card-text">{{c.categoryid.categoryname}}</p>
+                                    <a href="{% url "projectinfo" %}?cid={{c.subcategoryid}}" class="btn btn-primary">Browse All Projects</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </section>
+            {% endif %}
+
+            {% if request.session.type == "A"%}
+            <section class="section popular-projects-job">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-12 mx-auto text-center">
+                            <div class="section-header">
+                                {% comment %} <h2 class="header-title">Popular Projects near you</h2> {% endcomment %}
+                                {% comment %} <p>Bid and start the new Project</p> {% endcomment %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for p in proj %}
+                        <!--- Project Item  -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
+                            <div class="project-item project-popular-item aos">
+                                <div class="project-img">
+                                    <a href="project.html"><img src="{{p.image.url}}" style="height:188px" alt="Img"
+                                            class="img-fluid"></a>
+                                </div>
+                                <div class="feature-content">
+        
+                                    <h4><a href="{% url 'details' %}?pid={{p.projectid}}" tabindex="-1">{{p.bname}}</a></h4>
+                                    <ul class="feature-project-list nav">
+                                        {% comment %} {{ request.session.uid }} {% endcomment %}
+                                        <li>{% if p.userid.userid == request.session.uid %}
+                                            <a href="{% url "myprofile" %}"><i
+                                                    class="feather-user me-1">{{p.userid.username}}</i></a>
+                                            {% else %}
+                                            <a href="{% url "myprofile2" %}?uid={{p.userid.userid}}"><i
+                                                    class="feather-user me-1">{{p.userid.username}}</i></a>
+                                            {% endif %}
+                                        </li>
+                                        <li>&#8377;{{p.budget}}</li>
+                                    </ul>
+        
+                                </div>
+                            </div>
+                        </div>
+                        <!--- /Project Item  -->
+                        {% endfor %}
+        
+        
+        
+                        <div class="col-md-12">
+                            <div class="home-five-section-btn">
+                                <a href="{% url "display" %}" class="btn btn-primary">View More Projects</a>
+                            </div>
+                        </div>
+        
+                    </div>
+                </div>
+            </section>
+            {% endif %}
+            <!-- Popular Projects -->
+        
+
+            <!-- Most Hired Developers -->
+            {% if request.session.type == "C"%}
+            <section class="most-hired-section">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12 col-sm-12 col-12 mx-auto text-center">
+                            <div class="section-header aos aos-init aos-animate">
+                                <h2 class="header-title">Most Hired Advertiser</h2>
+                                <p>Work with talented people at the most affordable price</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for a in adv %}
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                            <div class="hired-developers aos">
+                                <div class="hired-developers-img">
+                                    <a href="developer-details.html"><img src="{{a.profilepic.url}}"
+                                            style="height:197px;object-fit:cover" class="img-fluid" alt="Img"></a>
+                                </div>
+                                <div class="hired-developers-img-content d-flex justify-content-between align-items-start">
+                                    <div>
+                                        
+                                        {% if a.advertiserid == request.session.uid %}
+                                        <h4><a href="{% url "adv" %}?aid={{a.advertiserid}}">{{a.advertisername}}</a></h4>
+                                        {% else %}
+                                        <h4><a href="{% url "adv2" %}?aid={{a.advertiserid}}">{{a.advertisername}}</a></h4>
+                                        {% endif %}
+                                        <span>{{a.emailid}}</span>
+        
+                                    </div>
+                                    {% comment %} <div class="rating">
+                                        <i class="fas fa-star filled"></i>
+                                        <i class="fas fa-star filled"></i>
+                                        <i class="fas fa-star filled"></i>
+                                        <i class="fas fa-star filled"></i>
+                                        <i class="fas fa-star filled"></i>
+                                        <span class="average-rating">5.0</span>
+                                    </div> {% endcomment %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+        
+        
+                    </div>
+                </div>
+            </section>
+            {% endif %}
+            <!-- /Most Hired Developers -->
+
+            <section class="section review">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="work-set-image">
+                                <img src="{% static "img/work4.png" %}" alt="Img" class="img-fluid ">
+                            </div>
+        
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="aos ">
+                                <div class="demand-professional">
+                                    <h2>AdHub - the ad network #1</h2>
+                                    {% comment %} <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                        ut labore et dolore magna aliqua. </p> {% endcomment %}
+                                </div>&nbsp;&nbsp;
+                                <div class="demand-post-job">
+                                    <div class="demand-post-img">
+                                        <img src="{% static "img/icon/recent-icon-04.svg" %}" alt="Img" class="img-fluid">
+                                    </div>
+                                    <div class="demand-content">
+                                        <h5>Post a Project</h5>
+                                        <p>Publish the project posting on your selected platforms. Follow the specific submission
+                                            process for each platform.</p>
+                                    </div>
+                                </div>&nbsp;&nbsp;
+                                <div class="demand-post-job">
+                                    <div class="demand-post-img">
+                                        <img src="{% static "img/icon/recent-icon-05.svg" %}" alt="Img" class="img-fluid">
+                                    </div>
+                                    <div class="demand-content">
+                                        <h5>Hire Advertiser</h5>
+                                        <p>Depending on the platform, you can either wait for advertiser to apply or invite
+                                            specific advertiser to submit proposals.</p>
+                                    </div>
+                                </div>&nbsp;&nbsp;
+                                <div class="demand-post-job">
+                                    <div class="demand-post-img">
+                                        <img src="{% static "img/icon/recent-icon-06.svg" %}" alt="Img" class="img-fluid">
+                                    </div>
+                                    <div class="demand-content">
+                                        <h5>Get Work Done</h5>
+                                        <p>Utilize productivity tools and apps to help you stay organized, manage tasks, and set
+                                            reminders.</p>
+                                    </div>
+                                </div>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            
+        
+        
+            <!-- FAQ -->
+            <section class="faq-section-three" id="faq">
+                <div class="container">
+                    <div class="row">					
+                        <div class="col-md-12 col-sm-12 col-12 mx-auto text-center">
+                            <div class="section-header aos aos-init aos-animate" >
+                                <h2 class="header-title">Frequently Asked Question</h2>
+                                <p>View all the questions, answered for users</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="accordionExample">
+                        <div class="col-lg-12">
+                            <div class="faq-card aos  " >
+                                <h4 class="faq-title">
+                                    <a class="collapseds active" data-bs-toggle="collapse" href="#faqOne" aria-expanded="true">1. Where AdHub display ads?</a>
+                                </h4>
+                                <div id="faqOne" class="card-collapse collapse show" data-bs-parent="#accordionExample">
+                                    <p>AdHub display ads online like Google Ads, YouTube Ads, etc. In offline, ads are displayed on hordings, banners, etc.</p>
+                                </div>
+                            </div>	
+                            <div class="faq-card aos  " >																																
+                                <h4 class="faq-title">
+                                    <a class="collapsed" data-bs-toggle="collapse" href="#faqtwo" aria-expanded="false">2. Do AdHub work on only a single campaign?</a>
+                                </h4>
+                                <div id="faqtwo" class="card-collapse collapse" data-bs-parent="#accordionExample">
+                                    <p>Yes, AdHub accept single campaign work. They are also willing to take up work on short term project basis so that the client can know the actual results and then onboard the agency full time.</p>
+                                </div>
+                            </div>
+                            <div class="faq-card aos  " >
+                                <h4 class="faq-title">
+                                    <a class="collapsed" data-bs-toggle="collapse" href="#faqthree" aria-expanded="false">3. Do AdHub work with multiple brands?</a>
+                                </h4>
+                                <div id="faqthree" class="card-collapse collapse" data-bs-parent="#accordionExample">
+                                    <p>AdHub are companies that work on various brands simultaneously. They often have different teams working on different brands.</p>
+                                </div>
+                            </div>	
+                            <div class="faq-card aos  " >
+                                <h4 class="faq-title">
+                                    <a class="collapsed" data-bs-toggle="collapse" href="#faqfour" aria-expanded="false">4. Do AdHub work for long term?</a>
+                                </h4>
+                                <div id="faqfour" class="card-collapse collapse" data-bs-parent="#accordionExample">
+                                    <p>Most AdHub work on long term contracts with their clients</p>
+                                </div>
+                            </div>
+                            <div class="faq-card aos  " >
+                                <h4 class="faq-title">
+                                    <a class="collapsed" data-bs-toggle="collapse" href="#faqfive" aria-expanded="false">5. Will AdHub take approval for the campaign before introducing it?</a>
+                                </h4>
+                                <div id="faqfive" class="card-collapse collapse" data-bs-parent="#accordionExample">
+                                    <p>Yes, AdHub will plan the campaign then take approvals from the client. Once approvals are received, only then they proceed further.</p>
+                                </div>
+                            </div>
+                            <div class="faq-card aos  " >
+                                <h4 class="faq-title">
+                                    <a class="collapsed" data-bs-toggle="collapse" href="#faqfive" aria-expanded="false">6.  Can AdHub help with social media marketing?</a>
+                                </h4>
+                                <div id="faqfive" class="card-collapse collapse" data-bs-parent="#accordionExample">
+                                    <p>Yes, AdHub specialize in social media marketing and can help create and implement effective strategies to promote your business on popular platforms like Facebook, Instagram, Twitter, and LinkedIn.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>	
+                </div>				
+            </section>
+        
+        <section class="section job-registers">
+            
+            <div class="container position-relative job-register">		
+                <div class="float-img">
+                    <img src="{% static "img/opportunity.png" %}" alt="img">
+                </div>		
+                <div class="row">
+                    <div class="col-12">
+                        <div class="register-job-blk">
+                            <div class="job-content-blk aos aos-init aos-animate" >
+                                <h2>Find Your Next Great Advertisement!</h2>
+                                <p>We are here to help you to meet your goals.</p>
+                                <a href="{% url 'register'%}" class="btn all-btn">Join Now</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /Opportunity --> 
+            
+        </div>
+    </div>
+
+    {% comment %} <div class="col-md-2 mt-5">
+        <h1>Notifications</h1>
+        <ul class="mt-5">
+            {% for n in notifications %}
+            <li>{{n.msg}}</li>
+            {% endfor %}
+        </ul>
+    </div> {% endcomment %}
+</div>
+
+{% endblock %}

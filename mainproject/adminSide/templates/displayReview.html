@@ -1,0 +1,25 @@
+{% extends "adminBase.html" %}
+{% block container %}
+        <table border="1" class="table table-hover">
+            <tr class="bg-primary">
+                <th>Review ID</th>
+                <th>Project ID</th>
+                <th>Review</th>
+                <th>Rating</th>
+                <th>User ID</th>
+                <th>Advertiser ID</th>
+                <th>Date</th>
+            </tr>
+            {% for r in view %}
+            <tr>
+                <td>{{r.reviewid}}</td>
+                <td>{{r.projectid.bname}}</td>
+                <td>{{r.review}}</td>
+                <td>{{r.budget}}</td>
+                <td>{{r.userid.username}}</td>
+                <td>{{r.advertiserid.advertisername}}</td>
+                <td>{{r.date}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+{% endblock  %}
